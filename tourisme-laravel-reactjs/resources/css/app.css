@@ -1,0 +1,62 @@
+#v1 {
+ 
+    /* display: block; */
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 95%; */
+    height: 700px;
+   
+  }
+    
+  
+  .content{
+    position: absolute;
+    width: 60%;
+    /* margin: 160px auto 0; */
+    text-align: center;
+    /* position: absolute; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    font-size: 24px;
+    color: white;
+    /* text-shadow: 1px 1px 1px black; */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    
+  }
+  #tt { 
+    color: rgb(173, 3, 3);
+     font-family: "Great Vibes", cursive; 
+     font-size: 20px; 
+     line-height: 10px;
+      font-weight: normal;
+       margin-bottom: 0px; 
+       margin-top: 40px;
+        text-align: center;
+         text-shadow: 0 1px 1px #07c700e7; 
+      
+        }
+        #mm{
+          color: rgb(173, 3, 3);
+          font-family: "Great Vibes", cursive; 
+          font-size: 20px; 
+          line-height: 10px;
+           font-weight: bold;
+            margin-bottom: 0px; 
+            margin-top: 40px;
+             text-align: center;
+             text-shadow: 0 1px 1px #07c700e7;
+        }
+  /* #pills-home-tab{ */
+    /* background-color: rgba(0, 100, 0, 0.61); */
+    /* background-color: #56b027fc; */
+  /* } */
+  
+  #pills-disabled-tab:hover:active{
+    background-color: rgb(255, 255, 255);
+  }
+  
