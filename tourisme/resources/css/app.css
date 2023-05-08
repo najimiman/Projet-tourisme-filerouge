@@ -1,3 +1,10 @@
+/* link */
+nav .active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* home */
 #v1 {
  
     /* display: block; */
@@ -60,3 +67,14 @@
     background-color: rgb(255, 255, 255);
   }
   
+
+  /* city */
+  .card:hover img{
+    transform: scale(1.1);
+}
+.card img{
+    transition: 0.25s ease;
+}
+.card{
+    overflow: hidden;
+}
