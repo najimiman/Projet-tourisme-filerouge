@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('index',[City::class,'index'])->name('index');
 Route::get('edit/{id}',[City::class,'edit']);
 Route::get('indexplage',[PlageController::class,'index'])->name('indexplage');
+Route::get('filter_data',[City::class,'filter_data'])->name('filter_data');

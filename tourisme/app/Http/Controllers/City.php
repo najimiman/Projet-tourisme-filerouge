@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Citymodele;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class City extends Controller
 {
@@ -14,7 +15,13 @@ class City extends Controller
     {
         return Citymodele::all();
     }
-
+    function filter_data(Request $request)
+    {
+      $data = DB::table('cities')
+                    ->where('city', 'like', '%'.$request->filtercity.'%')
+                    ->get();
+      return $data;
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -15,7 +15,7 @@ export default function Homebeaches() {
 
                     {APIDataplage.map((data,index) => {
                         return (
-                            <div class="col-md-6 mb-4" style={{ position: 'relative'}}  key={index}>
+                            <div class="col-md-6 mb-4 p-2" style={{ position: 'relative'}}  key={index}>
                                 <div class="card" style={{borderRadius:'30px', boxShadow:'10px 10px 15px #7f8080' }}>
                                     <div class="view overlay hm-white-slight p-1">
                                         <img src={'/les images de tourisme/' + data.image} class="img-fluid" alt="photo" style={{borderRadius:'30px'}}/>

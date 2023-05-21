@@ -2,18 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 // import "./City.css";
 import Modal from "./Model";
+import { ThemeContext } from "../Context/context";
+import { FaHeart } from "react-icons/fa";
+
 export default function City() {
-    const [APIData, setAPIData] = useState([]);
+    // const [APIData, setAPIData] = useState([]);
     const [isExpanded, setIsExpanded] = useState(false);
     const [showFull, setShowFull] = useState({});
     const [showDescription, setShowDescription] = useState({});
     const [datades, setDatades] = useState({});
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/index`).then(res => {
-            console.log(res.data);
-            setAPIData(res.data);
-        })
-    }, [])
+
+    const { APIData} = React.useContext(ThemeContext)
+    // useEffect(() => {
+    //     axios.get(`http://127.0.0.1:8000/api/index`).then(res => {
+    //         console.log(res.data);
+    //         setAPIData(res.data);
+    //     })
+    // }, [])
  
     const toggleDescription = index => {
         // Toggle showFull state for the clicked item
@@ -76,6 +81,10 @@ export default function City() {
                                         </p>
                                         <button type="button" onClick={() => handleModal(data.id,index)} class="btn btn-outline-primary waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Description
+                                        </button>
+                                        <button class="btn waves-effect">
+                                            {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
+                                            <FaHeart style={{color: 'red', fontSize: '35px'}}/>
                                         </button>
                                         {showDescription[index] && (<Modal modeldescription={datades}  />)}
                                        
