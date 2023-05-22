@@ -94,7 +94,7 @@ const handelclikc=(e)=>{
                   <ul class="dropdown-menu">
                     
                     <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExamplelogin" role="button" aria-controls="offcanvasExample">Login</a></li>
-                    <li><a class="dropdown-item" href="#">Registre</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExampleregistre" role="button" aria-controls="offcanvasExample">Registre</a></li>
                     <li><a class="dropdown-item" href="#">Logout</a></li>
                    
                   </ul>

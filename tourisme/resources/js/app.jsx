@@ -1,5 +1,4 @@
 import './bootstrap';
-import { Provider } from "react-redux";
 import App from "./Routes/App";
 // import Store from "./config/store";
 import ReactDOM from 'react-dom';
