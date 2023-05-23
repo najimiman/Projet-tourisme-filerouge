@@ -6,40 +6,16 @@ import { ThemeContext } from "../Context/context";
 import { FaHeart } from "react-icons/fa";
 
 export default function City() {
-    // const [APIData, setAPIData] = useState([]);
-    const [isExpanded, setIsExpanded] = useState(false);
     const [showFull, setShowFull] = useState({});
-    const [showDescription, setShowDescription] = useState({});
-    const [datades, setDatades] = useState({});
-
-    const { APIData} = React.useContext(ThemeContext)
-    // useEffect(() => {
-    //     axios.get(`http://127.0.0.1:8000/api/index`).then(res => {
-    //         console.log(res.data);
-    //         setAPIData(res.data);
-    //     })
-    // }, [])
- 
-    const toggleDescription = index => {
+    const { APIData,handleModal,datades} = React.useContext(ThemeContext)
+    const toggleConseil = index => {
         // Toggle showFull state for the clicked item
         setShowFull(prevState => ({
           ...prevState,
           [index]: !prevState[index]
         }));
       };
-      const handleModal = (id,index) => {
-        axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
-        .then(res => {
-          console.log(res.data)
-          setDatades(res.data);
-        })
-        // Open the modal with the data for the item with the specified ID
-        console.log(`Opening modal for item with ID ${id}`);
-        setShowDescription(prevState => ({
-            ...prevState,
-            [index]: !prevState[index]
-          }));
-      };
+      
 
     // console.log(props);
     return (
@@ -62,32 +38,31 @@ export default function City() {
                                                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                                                 </svg>
                                             </i>
-                                            <a style={{ color: '#FFF', fontWeight: '600' }} target="_blank" rel="nofollow noopener" href={data.maps}>Google map</a>
+                                            <a style={{ color: '#FFF', fontWeight: '600' }} target="_blank" rel="nofollow noopener" href={data.googlemaps}>Google map</a>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="card-title">{data.placeincity}</h4>
+                                        <h4 class="card-title">{data.nom}</h4>
                                         <p class="card-text">
                                            
                                         {showFull[index]
                                             ? data.conseil
                                             : `${data.conseil.slice(0, 100)}`}
                                             {data.conseil.length > 100 && (
-                                            <button type="button" class="btn btn-link" onClick={() => toggleDescription(index)}>
+                                            <button type="button" class="btn btn-link" onClick={() => toggleConseil(index)}>
                                             {showFull[index] ? 'Read Less' : 'Read More'}
                                         </button>
                                         )}
                                             
                                         </p>
-                                        <button type="button" onClick={() => handleModal(data.id,index)} class="btn btn-outline-primary waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" onClick={() => handleModal(data.id)} class="btn btn-outline-primary waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Description
                                         </button>
                                         <button class="btn waves-effect">
                                             {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
                                             <FaHeart style={{color: 'red', fontSize: '35px'}}/>
                                         </button>
-                                        {showDescription[index] && (<Modal modeldescription={datades}  />)}
-                                       
+                                        {<Modal modeldescription={datades}  />}
                                     </div>
 
                                 </div>

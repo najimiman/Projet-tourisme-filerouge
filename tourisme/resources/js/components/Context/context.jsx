@@ -6,12 +6,13 @@ export default function Themeprovider(Props){
 
 // const [data,setData]=useState([])
 const [APIData, setAPIData] = useState([]);
+const [datades, setDatades] = useState({});
 const [name,setName]=useState('');
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
 const [tokenid,setTokenid]=useState('');
 function getcity(){
-    axios.get(`http://127.0.0.1:8000/api/index`).then(res => {
+    axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
             setAPIData(res.data);
         })
@@ -34,6 +35,14 @@ function handelfilter(valuecity){
         }
     })
 }
+function handleModal(id){
+    axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
+    .then(res => {
+      console.log(res.data)
+      setDatades(res.data);
+    })
+    console.log(`Opening modal for item with ID ${id}`);
+  };
 
 function handelregistre(){
     // name,email,password
@@ -52,7 +61,7 @@ useEffect(()=>{
     // handelfilter();
 },[])
 return (
-    <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword}}>
+    <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades}}>
         {Props.children}
     </ThemeContext.Provider>
 );
