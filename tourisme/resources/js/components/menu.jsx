@@ -7,9 +7,8 @@ import { ThemeContext } from "./Context/context";
 
 
 const Menu = () => {
-  const [show, setShow] = useState(false)
   const links = document.querySelectorAll("nav a");
-  const { handelfilter} = React.useContext(ThemeContext)
+  const { handelclikc,show,handelfilter} = React.useContext(ThemeContext)
   
   
 links.forEach(link => {
@@ -18,16 +17,6 @@ links.forEach(link => {
       this.classList.add("active");
    });
 });
-const handelclikc=(e)=>{
-  const filterValue = e.target.getAttribute('id');
-  console.log(filterValue);
-  if(filterValue=='city' || filterValue=='plages'){
-      setShow(true);
-    }
-    else if(filterValue=='contact' || filterValue=='home' || filterValue=='Auth'){
-      setShow(false);
-    }
-}
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">

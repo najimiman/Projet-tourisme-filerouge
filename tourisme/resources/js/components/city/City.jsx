@@ -6,18 +6,7 @@ import { ThemeContext } from "../Context/context";
 import { FaHeart } from "react-icons/fa";
 
 export default function City() {
-    const [showFull, setShowFull] = useState({});
-    const { APIData,handleModal,datades} = React.useContext(ThemeContext)
-    const toggleConseil = index => {
-        // Toggle showFull state for the clicked item
-        setShowFull(prevState => ({
-          ...prevState,
-          [index]: !prevState[index]
-        }));
-      };
-      
-
-    // console.log(props);
+    const { APIData,handleModal,datades,showFull,toggleConseil} = React.useContext(ThemeContext)
     return (
         <div className="p-2">
             {/* style={{backgroundImage:`url("im1.jpg")`,backgroundSize:'contain'}} */}
@@ -45,12 +34,12 @@ export default function City() {
                                         <h4 class="card-title">{data.nom}</h4>
                                         <p class="card-text">
                                            
-                                        {showFull[index]
+                                        {showFull[data.id]
                                             ? data.conseil
                                             : `${data.conseil.slice(0, 100)}`}
                                             {data.conseil.length > 100 && (
-                                            <button type="button" class="btn btn-link" onClick={() => toggleConseil(index)}>
-                                            {showFull[index] ? 'Read Less' : 'Read More'}
+                                            <button type="button" class="btn btn-link" onClick={() => toggleConseil(data.id)}>
+                                            {showFull[data.id] ? 'Read Less' : 'Read More'}
                                         </button>
                                         )}
                                             
@@ -67,7 +56,7 @@ export default function City() {
 
                                 </div>
                             </div>
-                        )
+                        );
                     })}
 
                 </div>

@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ThemeContext } from "../Context/context";
 export default function Homebeaches() {
-    const [APIDataplage,setAPIDataplage]=useState([]);
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/indexplage`).then(res => {
-            console.log(res.data);
-            setAPIDataplage(res.data);
-        })
-    }, [])
+    const { APIDataplage,showFull,toggleConseil} = React.useContext(ThemeContext)
+    // console.log(showFull);
     return (
  
         <div class="container">
                 <div class="row">
-
                     {APIDataplage.map((data,index) => {
                         return (
                             <div class="col-md-6 mb-4 p-2" style={{ position: 'relative'}}  key={index}>
@@ -32,9 +27,16 @@ export default function Homebeaches() {
                                     <div class="card-body">
                                         <h4 class="card-title">{data.nom}</h4>
                                         <p class="card-text">
-                                            {data.description}
-                                        </p>
-                                       
+                                           {showFull[data.id]
+                                                ? data.description
+                                                : `${data.description.slice(0, 100)}`}
+                                                {data.description.length > 100 && (
+                                                    <button type="button" class="btn btn-link" onClick={() => toggleConseil(data.id)}>
+                                                    {showFull[data.id] ? 'Read Less' : 'Read More'}
+                                                    </button>
+                                                )}
+                                               
+                                           </p>
                                        
                                     </div>
 

@@ -1,6 +1,5 @@
 <?php
 namespace Database\Seeders;
-use App\Models\Citymodele;
 use App\Models\Cityplage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,7 +12,7 @@ class CityPlageSeeder extends Seeder
      */
     public function run(): void
     {
-        $json=Storage::disk('local')->get('/json/cityplage.json');
+        $json=Storage::disk('local')->get('/myfilejson/cityplage.json');
         $movies=json_decode($json,true);
         foreach($movies as $movie){
             Cityplage::query()->updateOrCreate([

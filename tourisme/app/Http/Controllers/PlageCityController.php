@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cityplage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlageCityController extends Controller
 {
@@ -24,7 +25,24 @@ class PlageCityController extends Controller
         // return Cityplage::all()->where('category','=','plages');
         return Cityplage::where('category','=','plages')->get()->toArray();
     }
-
+    function filter_datacity(Request $request)
+    {
+            $data = DB::table('cityplages')
+                    ->where('category', 'like', '%cityplace%')
+                    ->where('city', 'like', '%'.$request->filtercity.'%')
+                    ->get()->toArray();
+            return $data;
+    }
+    function filter_dataplages(Request $request)
+    {
+        $data = DB::table('cityplages')
+        ->where('category', 'like', '%plages%')
+        ->where('city', 'like', '%'.$request->filtercity.'%')
+        ->get();
+        return $data;
+      
+    }
+    
     /**
      * Show the form for creating a new resource.
      */
