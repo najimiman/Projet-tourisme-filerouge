@@ -33,7 +33,7 @@ export default function Registre() {
                                 <button class="btn mt-3" onClick={()=>handelregistre()}>Registre</button>
                             </div>
                             <div class="text-center fs-6">
-                                <a href="#">Forget password?</a> or <a href="#">Login</a>
+                                <a href="#">Forget password?</a> or <a href="#offcanvasExamplelogin">Login</a>
                             </div>
                         </div>
                     </div>

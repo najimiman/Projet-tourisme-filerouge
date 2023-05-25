@@ -91,8 +91,21 @@ function handelregistre(){
     console.log(name);
     console.log(email);
     console.log(password);
-    axios.post('http://127.0.0.1:8000/api/register',{name,email,password}).then(res=>{
+    const role="user";
+    axios.post('http://127.0.0.1:8000/api/register',{name,email,password,role}).then(res=>{
         setTokenid(res.data.token.tokenable_id);
+        console.log(res.data);
+        setName("");
+        setEmail("");
+        setPassword("");
+        // console.log(res.data.token.tokenable_id);
+    })
+}
+function handellogin(){
+  console.log(email);
+    console.log(password);
+    axios.post('http://127.0.0.1:8000/api/login',{email,password}).then(res=>{
+        // setTokenid(res.data);
         console.log(res.data);
         // console.log(res.data.token.tokenable_id);
     })
@@ -108,7 +121,7 @@ useEffect(()=>{
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin}}>
         {Props.children}
     </ThemeContext.Provider>
 );

@@ -1,6 +1,7 @@
 import React from "react";
-class Login extends React.Component {
-    render() {
+import { ThemeContext } from "../Context/context";
+export default function Login() {
+    const { handellogin,setEmail,setPassword} = React.useContext(ThemeContext)
         return (
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamplelogin" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
@@ -16,19 +17,19 @@ class Login extends React.Component {
                             <div class="text-center mt-4 name">
                                 Twitter
                             </div>
-                            <form class="p-3 mt-3">
-                                <div class="form-field d-flex align-items-center">
-                                    <span class="far fa-user"></span>
-                                    <input type="text" name="userName" id="userName" placeholder="Username" />
+                            <div class="p-3 mt-3">
+                            <div class="form-field d-flex align-items-center">
+                                    <span class="fas fa-at"></span>
+                                    <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                                 </div>
                                 <div class="form-field d-flex align-items-center">
                                     <span class="fas fa-key"></span>
-                                    <input type="password" name="password" id="pwd" placeholder="Password" />
+                                    <input type="password" name="password" id="pwd" onChange={(e) => setPassword(e.target.value)}  placeholder="Password" />
                                 </div>
-                                <button class="btn mt-3">Login</button>
-                            </form>
+                                <button class="btn mt-3" onClick={()=>handellogin()} >Login</button>
+                            </div>
                             <div class="text-center fs-6">
-                                <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+                                <a href="#">Forget password?</a> or <a data-bs-toggle="offcanvas" href="#offcanvasExampleregistre" role="button" aria-controls="offcanvasExample">Registre</a>
                             </div>
                         </div>
                     </div>
@@ -37,6 +38,5 @@ class Login extends React.Component {
                 </div>
             </div>
         );
-    }
+    
 }
-export default Login;
