@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('MyToken')->accessToken;
-            return response()->json(['token' => $token], 200);
+            // return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $user], 200);
         } else {
             // return response()->json(['error' => 'Unauthorized'], 401);
             return response()->json(['error' => 'Unauthorized']);
@@ -39,14 +41,16 @@ class AuthController extends Controller
         $token = $user->createToken('MyToken')->accessToken;
         return response()->json(['token' => $token], 200);
     }
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json(['message' => 'Successfully logged out']);
+    }
     public function users()
     {
-
         $usersList = User::all();
         return $usersList;
     }
-
-
 
 
 

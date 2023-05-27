@@ -13,8 +13,11 @@ const [name,setName]=useState('');
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
 const [tokenid,setTokenid]=useState('');
+const [avatar,setAvatar]=useState('');
 
 const [show, setShow] = useState(false);
+const [showavatar, setShowavatar] = useState(false);
+const [error, setError] = useState('');
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -101,15 +104,36 @@ function handelregistre(){
         // console.log(res.data.token.tokenable_id);
     })
 }
-function handellogin(){
+async function handellogin(){
   console.log(email);
     console.log(password);
-    axios.post('http://127.0.0.1:8000/api/login',{email,password}).then(res=>{
-        // setTokenid(res.data);
-        console.log(res.data);
-        // console.log(res.data.token.tokenable_id);
-    })
-}
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login',{email,password});
+      if (response.status === 200) {
+        setShowavatar(true);
+        console.log(response.data.token);
+        setAvatar(response.data.token.email)
+      } 
+      // else{
+      //   setError('Invalid username or password');
+      //   setShowavatar(false);
+      // }
+    } catch (error) {
+      setError('Invalid username or password');
+      setShowavatar(false);
+    }
+  }
+  function handelelogout() {
+    // localStorage.clear();
+    // axios.post('http://127.0.0.1:8000/api/logout')
+    //   .then(response => {
+    //     console.log(response.data.message);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+    setShowavatar(false);
+  }
 
 useEffect(()=>{
     getcity();
@@ -121,7 +145,7 @@ useEffect(()=>{
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,showavatar,handelelogout}}>
         {Props.children}
     </ThemeContext.Provider>
 );

@@ -187,3 +187,46 @@ body {
         padding: 40px 15px 15px 15px;
     }
 }
+/* avatar text  */
+/* 
+.avatar-button {
+    font-size: 1rem;
+    text-align: center;
+    overflow: visible;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .avatar-text {
+    align-items: center;
+    color: #fff;
+    display:block;
+    background-color: #673ab7;
+    font-size: 0.9rem;
+    border-radius: 100%;
+    vertical-align: middle;
+    justify-content: center;
+    padding: 0.7rem;
+  }
+  
+  .avatar-button:focus {
+    outline: .1em solid #141B38;
+  } */
+  .avatar {
+    font-size: 16px;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background: #039BE5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #textavatar {
+    /* content: attr(data-label); */
+    font-family: 'Readex Pro',sans-serif;
+    color: #ecf0f3;
+    font-weight: bolder;
+    font-size: 1.875em;
+  }

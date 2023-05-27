@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
 Route::get('users',[AuthController::class,'users']);
+Route::post('logout',[AuthController::class,'logout']);
 
 
 Route::get('cityplace',[PlageCityController::class,'getallcityplace']);
@@ -29,3 +30,4 @@ Route::get('plages',[PlageCityController::class,'getallplages']);
 Route::get('edit/{id}',[PlageCityController::class,'edit']);
 Route::get('filter_datacity',[PlageCityController::class,'filter_datacity'])->name('filter_datacity');
 Route::get('filter_dataplages',[PlageCityController::class,'filter_dataplages'])->name('filter_dataplages');
+Route::get('infouser',[AuthController::class,'infouser']);
