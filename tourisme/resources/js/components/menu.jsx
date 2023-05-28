@@ -8,7 +8,7 @@ import { ThemeContext } from "./Context/context";
 
 const Menu = () => {
   const links = document.querySelectorAll("nav a");
-  const { handelclikc,show,handelfilter,avatar,showavatar,handelelogout} = React.useContext(ThemeContext)
+  const { handelclikc,show,handelfilter,avatar,handelelogout} = React.useContext(ThemeContext)
   
   
 links.forEach(link => {
@@ -89,7 +89,7 @@ links.forEach(link => {
                   </ul>
                 </li>
                 {/* data-label='DC' */}
-                {showavatar?<div class='avatar'><span id='textavatar'>{avatar.charAt(0)}</span></div>:null}
+                {avatar?<div class='avatar'><span id='textavatar'>{avatar.charAt(0)}</span></div>:null}
               </ul>
             </div>
         </div>

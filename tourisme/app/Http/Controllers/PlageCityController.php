@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cityplage;
+use App\Models\Fovorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +43,14 @@ class PlageCityController extends Controller
         return $data;
       
     }
-    
+    function myfavorite(Request $request){
+        $input = $request->all();
+        $favorite = Fovorite::create($input);
+        return $favorite;
+    }
+    function getFavorite(){
+        return Fovorite::all();
+    }
     /**
      * Show the form for creating a new resource.
      */

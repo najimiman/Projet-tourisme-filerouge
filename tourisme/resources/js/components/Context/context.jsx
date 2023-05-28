@@ -9,14 +9,13 @@ const [APIData, setAPIData] = useState([]);
 const [APIDataplage,setAPIDataplage]=useState([]);
 const [datades, setDatades] = useState({});
 const [showFull, setShowFull] = useState({});
+const [APIDataFavorite,setAPIDataFavorite]=useState([]);
 const [name,setName]=useState('');
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
-const [tokenid,setTokenid]=useState('');
 const [avatar,setAvatar]=useState('');
 
 const [show, setShow] = useState(false);
-const [showavatar, setShowavatar] = useState(false);
 const [error, setError] = useState('');
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
@@ -101,7 +100,6 @@ function handelregistre(){
         setName("");
         setEmail("");
         setPassword("");
-        // console.log(res.data.token.tokenable_id);
     })
 }
 async function handellogin(){
@@ -110,7 +108,7 @@ async function handellogin(){
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login',{email,password});
       if (response.status === 200) {
-        setShowavatar(true);
+        // setShowavatar(true);
         console.log(response.data.token);
         setAvatar(response.data.token.email)
       } 
@@ -118,34 +116,64 @@ async function handellogin(){
       //   setError('Invalid username or password');
       //   setShowavatar(false);
       // }
+      localStorage.setItem('user-info',JSON.stringify(response));
     } catch (error) {
       setError('Invalid username or password');
-      setShowavatar(false);
+      localStorage.clear();
+      // setShowavatar(false);
     }
   }
   function handelelogout() {
-    // localStorage.clear();
-    // axios.post('http://127.0.0.1:8000/api/logout')
-    //   .then(response => {
-    //     console.log(response.data.message);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
-    setShowavatar(false);
+    localStorage.clear();
+    setAvatar('');
+  }
+  function getfavorite(){
+    axios.get('http://127.0.0.1:8000/api/getFavorite').then(res => {
+      setAPIDataFavorite(res.data);
+      console.log(res.data);
+})
+  }
+  function handelefavorite(idcityplages){
+    if(avatar!=''){
+      let user=JSON.parse(localStorage.getItem('user-info'));
+      console.log(user.data.token.id);
+      let cityplages_id=idcityplages;
+      let User_id=user.data.token.id;
+      const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
+      if(!filteredData){
+        axios.post('http://127.0.0.1:8000/api/myfavorite',{cityplages_id,User_id}).then(res => {
+              // setAPIDataFavorite(res.data);
+              console.log(res.data);
+              getfavorite();
+            })
+      }
+      else{
+        alert('this existe déja');
+      }
+    }
+    else{
+      alert('login');
+    }
   }
 
 useEffect(()=>{
     getcity();
     getplages();
+    getfavorite();
     // handelfilter();
+    if(localStorage.getItem('user-info')){
+      // setShowavatar(true);
+      let user=JSON.parse(localStorage.getItem('user-info'));
+      console.log(user.data.token.email);
+      setAvatar(user.data.token.email);
+    }
 },[])
 
 
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,showavatar,handelelogout}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite}}>
         {Props.children}
     </ThemeContext.Provider>
 );

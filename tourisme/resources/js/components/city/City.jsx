@@ -6,7 +6,7 @@ import { ThemeContext } from "../Context/context";
 import { FaHeart } from "react-icons/fa";
 
 export default function City() {
-    const { APIData,handleModal,datades,showFull,toggleConseil} = React.useContext(ThemeContext)
+    const { APIData,handleModal,datades,showFull,toggleConseil,handelefavorite} = React.useContext(ThemeContext)
     return (
         <div className="p-2">
             {/* style={{backgroundImage:`url("im1.jpg")`,backgroundSize:'contain'}} */}
@@ -47,7 +47,7 @@ export default function City() {
                                         <button type="button" onClick={() => handleModal(data.id)} class="btn btn-outline-primary waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Description
                                         </button>
-                                        <button class="btn waves-effect">
+                                        <button class="btn waves-effect" onClick={()=>handelefavorite(data.id)}>
                                             {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
                                             <FaHeart style={{color: 'red', fontSize: '35px'}}/>
                                         </button>
