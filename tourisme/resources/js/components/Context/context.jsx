@@ -65,7 +65,7 @@ const handelclikc=(e)=>{
     if(filterValue=='city'|| filterValue=='plages'){
         setShow(true);
       }
-      else if(filterValue=='contact' || filterValue=='home' || filterValue=='Auth'){
+      else if(filterValue=='contact' || filterValue=='home' || filterValue=='Auth' || filterValue=='favorite'){
         setShow(false);
       }
   }
@@ -141,7 +141,7 @@ async function handellogin(){
       let User_id=user.data.token.id;
       const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
       if(!filteredData){
-        axios.post('http://127.0.0.1:8000/api/myfavorite',{cityplages_id,User_id}).then(res => {
+        axios.post('http://127.0.0.1:8000/api/addfavorite',{cityplages_id,User_id}).then(res => {
               // setAPIDataFavorite(res.data);
               console.log(res.data);
               getfavorite();
@@ -155,6 +155,12 @@ async function handellogin(){
       alert('login');
     }
   }
+  // function handelcomparefavoriteandcityplages(){
+  //   const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id); 
+  // }
+  // function handeledatafavorite(){
+
+  // }
 
 useEffect(()=>{
     getcity();
