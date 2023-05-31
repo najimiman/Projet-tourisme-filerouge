@@ -189,23 +189,32 @@ useEffect(()=>{
       setIduserT(user.data.token.id);
       // console.log(user.data.token.id);
       getfavorite(user.data.token.id);
-
-      favoritehearthm.map((value) => {
-        console.log('mm',value.id);
-        const existe = APIDataFavorite.find((item) => item.cityplages_id === value.id && item.User_id === user.data.token.id);
+      
+      // favoritehearthm.map((value) => {
+        // console.log('mm',value.id);
+        // const existe = APIDataFavorite.find((item) => item.cityplages_id === value.id && item.User_id === user.data.token.id);
         // console.log('mmmmmmmmmmmm',existe);
-        if(existe){
-          console.log('yes existe');
-          // return { ...value, favoritehearth: true };
+        // if(existe){
+        //   console.log('yes existe');
+        //    return { ...value, favoritehearth: true };
           
-        }
+        // }
         
-        else{
-          // return { ...value, favoritehearth: false };
-          console.log('not');
-        }
-        
-      });
+        // else{
+        //    return { ...value, favoritehearth: false };
+        //   console.log('not');
+        // }
+
+      //   if(APIDataFavorite.filter(item=>item.id===value.id && item.User_id === user.data.token.id)){
+      //     console.log('existe');
+      //     setFavoritehearth(true);
+      //   }
+      //   else{
+      //     console.log('not existe');
+      //     setFavoritehearth(false);
+      //   }
+      //   console.log(favoritehearth);
+      // });
       }
     },[])
 

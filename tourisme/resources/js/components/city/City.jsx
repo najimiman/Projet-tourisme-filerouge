@@ -6,7 +6,10 @@ import { ThemeContext } from "../Context/context";
 import { FaHeart } from "react-icons/fa";
 
 export default function City() {
-    const { APIData,handleModal,datades,showFull,toggleConseil,handelefavorite} = React.useContext(ThemeContext)
+    const { APIData,handleModal,datades,showFull,toggleConseil,handelefavorite,APIDataFavorite} = React.useContext(ThemeContext)
+    const isFavorite = (item) => {
+        return APIDataFavorite.some((fav) => fav.cityplages_id === item.id);
+        };
     return (
         <div className="p-2">
             {/* style={{backgroundImage:`url("im1.jpg")`,backgroundSize:'contain'}} */}
@@ -49,7 +52,9 @@ export default function City() {
                                         </button>
                                         <button class="btn waves-effect" onClick={()=>handelefavorite(data.id)}>
                                             {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
-                                            <FaHeart style={{color: 'red', fontSize: '35px'}}/>
+                                            {/* <FaHeart style={{color: 'red', fontSize: '35px'}}/> */}
+                                            {/* {isFavorite(data) ? <FaHeart style={{color: 'red', fontSize: '35px'}} /> : null} */}
+                                            {isFavorite(data) ?<FaHeart color="red" /> : <FaHeart />}
                                         </button>
                                         {<Modal modeldescription={datades}  />}
                                     </div>
