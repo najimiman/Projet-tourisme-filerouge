@@ -14,6 +14,7 @@ const [name,setName]=useState('');
 const [email,setEmail]=useState('');
 const [password,setPassword]=useState('');
 const [avatar,setAvatar]=useState('');
+const [iduserT,setIduserT]=useState('');
 
 const [show, setShow] = useState(false);
 const [error, setError] = useState('');
@@ -127,14 +128,27 @@ async function handellogin(){
     localStorage.clear();
     setAvatar('');
   }
-  function getfavorite(){
-    axios.get('http://127.0.0.1:8000/api/getFavorite').then(res => {
-      setAPIDataFavorite(res.data);
-      console.log(res.data);
-})
+//   function getfavorite(){
+//     axios.get('http://127.0.0.1:8000/api/getFavorite').then(res => {
+//       setAPIDataFavorite(res.data);
+//       console.log(res.data);
+// })
+//   }
+  function getfavorite(iduser){
+    if(iduserT!=' '){
+      console.log("mmmmmmmm");
+      // let user=JSON.parse(localStorage.getItem('user-info'));
+      // console.log(user.data.token.id);
+      // let iduser=iduserT;
+      axios.get(`http://127.0.0.1:8000/api/getmyfavorite?iduser=${iduser}`).then(res=>{
+        console.log(res.data);
+        setAPIDataFavorite(res.data);
+      })
+    }
   }
+
   function handelefavorite(idcityplages){
-    if(avatar!=''){
+    if(avatar!=' '){
       let user=JSON.parse(localStorage.getItem('user-info'));
       console.log(user.data.token.id);
       let cityplages_id=idcityplages;
@@ -142,9 +156,8 @@ async function handellogin(){
       const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
       if(!filteredData){
         axios.post('http://127.0.0.1:8000/api/addfavorite',{cityplages_id,User_id}).then(res => {
-              // setAPIDataFavorite(res.data);
               console.log(res.data);
-              getfavorite();
+              getfavorite(User_id);
             })
       }
       else{
@@ -158,28 +171,29 @@ async function handellogin(){
   // function handelcomparefavoriteandcityplages(){
   //   const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id); 
   // }
-  // function handeledatafavorite(){
-
-  // }
+  
 
 useEffect(()=>{
     getcity();
     getplages();
-    getfavorite();
+    
     // handelfilter();
     if(localStorage.getItem('user-info')){
       // setShowavatar(true);
       let user=JSON.parse(localStorage.getItem('user-info'));
       console.log(user.data.token.email);
       setAvatar(user.data.token.email);
+      setIduserT(user.data.token.id);
+      console.log(user.data.token.id);
+      getfavorite(user.data.token.id);
     }
-},[])
+    },[])
 
 
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite}}>
         {Props.children}
     </ThemeContext.Provider>
 );
