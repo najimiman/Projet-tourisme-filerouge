@@ -18,6 +18,7 @@ const [iduserT,setIduserT]=useState('');
 
 const [show, setShow] = useState(false);
 const [error, setError] = useState('');
+const [favoritehearth, setFavoritehearth] = useState(false);
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -29,6 +30,7 @@ function getplages(){
     axios.get(`http://127.0.0.1:8000/api/plages`).then(res => {
             console.log(res.data);
             setAPIDataplage(res.data);
+            localStorage.setItem('datacity',JSON.stringify(res.data));
         })
             
 }
@@ -136,7 +138,6 @@ async function handellogin(){
 //   }
   function getfavorite(iduser){
     if(iduserT!=' '){
-      console.log("mmmmmmmm");
       // let user=JSON.parse(localStorage.getItem('user-info'));
       // console.log(user.data.token.id);
       // let iduser=iduserT;
@@ -181,12 +182,31 @@ useEffect(()=>{
     if(localStorage.getItem('user-info')){
       // setShowavatar(true);
       let user=JSON.parse(localStorage.getItem('user-info'));
-      console.log(user.data.token.email);
+      let favoritehearthm=JSON.parse(localStorage.getItem('datacity'));
+      
+      // console.log(user.data.token.email);
       setAvatar(user.data.token.email);
       setIduserT(user.data.token.id);
-      console.log(user.data.token.id);
+      // console.log(user.data.token.id);
       getfavorite(user.data.token.id);
-    }
+
+      favoritehearthm.map((value) => {
+        console.log('mm',value.id);
+        const existe = APIDataFavorite.find((item) => item.cityplages_id === value.id && item.User_id === user.data.token.id);
+        // console.log('mmmmmmmmmmmm',existe);
+        if(existe){
+          console.log('yes existe');
+          // return { ...value, favoritehearth: true };
+          
+        }
+        
+        else{
+          // return { ...value, favoritehearth: false };
+          console.log('not');
+        }
+        
+      });
+      }
     },[])
 
 
