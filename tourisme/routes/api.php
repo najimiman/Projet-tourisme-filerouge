@@ -30,6 +30,6 @@ Route::get('plages',[PlageCityController::class,'getallplages']);
 Route::get('edit/{id}',[PlageCityController::class,'edit']);
 Route::get('filter_datacity',[PlageCityController::class,'filter_datacity'])->name('filter_datacity');
 Route::get('filter_dataplages',[PlageCityController::class,'filter_dataplages'])->name('filter_dataplages');
-Route::post('myfavorite',[PlageCityController::class,'myfavorite']);
+Route::post('addfavorite',[PlageCityController::class,'addfavorite']);
 Route::get('getFavorite',[PlageCityController::class,'getFavorite']);
-
+Route::get('getmyfavorite',[PlageCityController::class,'getmyfavorite']);

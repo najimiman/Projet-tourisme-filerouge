@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import Login from "./Auth/Login";
 import City from "./city/City";
 import { ThemeContext } from "./Context/context";
+import Favorite from "./Favorite/favorite";
 
 
 const Menu = () => {
@@ -39,7 +40,10 @@ links.forEach(link => {
                 <li class="nav-item" role="presentation">
                   <Link class="nav-link" id="contact" data-bs-toggle="pill"  data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</Link>
                 </li>
-
+                <li class="nav-item" role="presentation">
+                  <Link class="nav-link btn btn-outline-primary waves-effect" id="favorite"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModalfavorite">Favorite</Link>
+                </li>
+                <Favorite/>
                 {/* {show?<li class="nav-item dropdown" role="presentation">
                 <div class="dropdown">
                   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
