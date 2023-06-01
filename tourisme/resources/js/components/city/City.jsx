@@ -54,7 +54,7 @@ export default function City() {
                                             {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
                                             {/* <FaHeart style={{color: 'red', fontSize: '35px'}}/> */}
                                             {/* {isFavorite(data) ? <FaHeart style={{color: 'red', fontSize: '35px'}} /> : null} */}
-                                            {isFavorite(data) ?<FaHeart color="red" /> : <FaHeart />}
+                                            {isFavorite(data) ?<FaHeart style={{color: 'red', fontSize: '20px'}} /> : <FaHeart style={{fontSize: '20px'}}/>}
                                         </button>
                                         {<Modal modeldescription={datades}  />}
                                     </div>

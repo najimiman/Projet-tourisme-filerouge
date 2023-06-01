@@ -53,9 +53,15 @@ class PlageCityController extends Controller
         return Fovorite::all();
     }
     function getmyfavorite(Request $request){
-        $listfavorite=User::join('fovorites', 'users.id', '=', 'fovorites.User_id')
-        ->join('cityplages','cityplages.id','=','fovorites.cityplages_id')
+        // $listfavorite=User::join('fovorites', 'users.id', '=', 'fovorites.User_id')
+        // ->join('cityplages','cityplages.id','=','fovorites.cityplages_id')
+        // ->where('fovorites.User_id',$request->iduser)
+        // ->get();
+        $listfavorite=Fovorite::join('cityplages','cityplages.id','=','fovorites.cityplages_id')
+        ->join('users','users.id', '=', 'fovorites.User_id')
         ->where('fovorites.User_id',$request->iduser)
+        ->select(['fovorites.id AS fvid','fovorites.cityplages_id','fovorites.User_id','cityplages.image','cityplages.city',
+        'cityplages.nom','cityplages.conseil','cityplages.googlemaps','users.name','users.id','users.email','users.password'])
         ->get();
         return $listfavorite;
     }
@@ -105,6 +111,8 @@ class PlageCityController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $deletefavorite=Fovorite::findOrFail($id);
+        $deletefavorite->delete();
+        return $deletefavorite;
     }
 }

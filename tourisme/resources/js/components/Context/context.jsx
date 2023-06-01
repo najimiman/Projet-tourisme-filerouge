@@ -18,7 +18,6 @@ const [iduserT,setIduserT]=useState('');
 
 const [show, setShow] = useState(false);
 const [error, setError] = useState('');
-const [favoritehearth, setFavoritehearth] = useState(false);
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -30,7 +29,7 @@ function getplages(){
     axios.get(`http://127.0.0.1:8000/api/plages`).then(res => {
             console.log(res.data);
             setAPIDataplage(res.data);
-            localStorage.setItem('datacity',JSON.stringify(res.data));
+            // localStorage.setItem('datacity',JSON.stringify(res.data));
         })
             
 }
@@ -64,7 +63,7 @@ function handelfilter(valuecity){
 
 const handelclikc=(e)=>{
     const filterValue = e.target.getAttribute('id');
-    console.log("hadi filter value",filterValue);
+    // console.log("hadi filter value",filterValue);
     if(filterValue=='city'|| filterValue=='plages'){
         setShow(true);
       }
@@ -113,7 +112,9 @@ async function handellogin(){
       if (response.status === 200) {
         // setShowavatar(true);
         console.log(response.data.token);
-        setAvatar(response.data.token.email)
+        setAvatar(response.data.token.email);
+        setIduserT(response.data.token.id);
+        console.log('iduseeeee',response.data.token.id);
       } 
       // else{
       //   setError('Invalid username or password');
@@ -129,18 +130,12 @@ async function handellogin(){
   function handelelogout() {
     localStorage.clear();
     setAvatar('');
+    getfavorite('');
   }
-//   function getfavorite(){
-//     axios.get('http://127.0.0.1:8000/api/getFavorite').then(res => {
-//       setAPIDataFavorite(res.data);
-//       console.log(res.data);
-// })
-//   }
+
   function getfavorite(iduser){
+    // console.log('hada avatar likayn f favorite',iduser);
     if(iduserT!=' '){
-      // let user=JSON.parse(localStorage.getItem('user-info'));
-      // console.log(user.data.token.id);
-      // let iduser=iduserT;
       axios.get(`http://127.0.0.1:8000/api/getmyfavorite?iduser=${iduser}`).then(res=>{
         console.log(res.data);
         setAPIDataFavorite(res.data);
@@ -169,60 +164,37 @@ async function handellogin(){
       alert('login');
     }
   }
-  // function handelcomparefavoriteandcityplages(){
-  //   const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id); 
-  // }
   
+  const onDelete = (id) => {
+    console.log(id)
+    axios.delete(`http://127.0.0.1:8000/api/destroy/${id}`)
+      .then((res) => {
+        console.log('mmmmmmmmmmmmmmm');
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
 useEffect(()=>{
     getcity();
     getplages();
-    
-    // handelfilter();
     if(localStorage.getItem('user-info')){
-      // setShowavatar(true);
       let user=JSON.parse(localStorage.getItem('user-info'));
-      let favoritehearthm=JSON.parse(localStorage.getItem('datacity'));
-      
-      // console.log(user.data.token.email);
-      setAvatar(user.data.token.email);
-      setIduserT(user.data.token.id);
-      // console.log(user.data.token.id);
+    
+      // setAvatar(user.data.token.email);
+      // setIduserT(user.data.token.id);
+      console.log(user.data.token.id);
       getfavorite(user.data.token.id);
-      
-      // favoritehearthm.map((value) => {
-        // console.log('mm',value.id);
-        // const existe = APIDataFavorite.find((item) => item.cityplages_id === value.id && item.User_id === user.data.token.id);
-        // console.log('mmmmmmmmmmmm',existe);
-        // if(existe){
-        //   console.log('yes existe');
-        //    return { ...value, favoritehearth: true };
-          
-        // }
-        
-        // else{
-        //    return { ...value, favoritehearth: false };
-        //   console.log('not');
-        // }
-
-      //   if(APIDataFavorite.filter(item=>item.id===value.id && item.User_id === user.data.token.id)){
-      //     console.log('existe');
-      //     setFavoritehearth(true);
-      //   }
-      //   else{
-      //     console.log('not existe');
-      //     setFavoritehearth(false);
-      //   }
-      //   console.log(favoritehearth);
-      // });
       }
-    },[])
+    },[iduserT])
 
 
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete}}>
         {Props.children}
     </ThemeContext.Provider>
 );
