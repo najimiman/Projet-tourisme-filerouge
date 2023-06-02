@@ -51,7 +51,6 @@ export default function City() {
                                         Description
                                         </button>
                                         <button class="btn waves-effect" onClick={()=>handelefavorite(data.id)}>
-                                            {/* <FontAwesomeIcon icon={image.favorite ? faHeart : faHeartRegular} /> */}
                                             {/* <FaHeart style={{color: 'red', fontSize: '35px'}}/> */}
                                             {/* {isFavorite(data) ? <FaHeart style={{color: 'red', fontSize: '35px'}} /> : null} */}
                                             {isFavorite(data) ?<FaHeart style={{color: 'red', fontSize: '20px'}} /> : <FaHeart style={{fontSize: '20px'}}/>}

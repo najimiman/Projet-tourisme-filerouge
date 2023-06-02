@@ -9,7 +9,7 @@ import Favorite from "./Favorite/favorite";
 
 const Menu = () => {
   const links = document.querySelectorAll("nav a");
-  const { handelclikc, show, handelfilter, avatar, handelelogout } = React.useContext(ThemeContext)
+  const { handelclikc, show, handelfilter, avatar, handelelogout ,count} = React.useContext(ThemeContext)
 
 
   links.forEach(link => {
@@ -38,11 +38,12 @@ const Menu = () => {
                 <Link class="nav-link" id="plages" to='/beaches' data-bs-target="#pills-plage" type="button" role="tab" aria-controls="pills-plage" aria-selected="false">Beaches</Link>
               </li>
               <li class="nav-item" role="presentation">
-                <Link class="nav-link" id="contact" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</Link>
+                <Link class="nav-link" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Comment</Link>
               </li>
+              
               <li class="nav-item" role="presentation">
                 <Link class="nav-link btn btn-outline-primary waves-effect position-relative" id="favorite" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalfavorite">Favorite <span class="badge text-bg-secondary">
-                  99+
+                  {count}+
                   {/* <span class="visually-hidden">unread messages</span> */}
                 </span></Link>
               </li>

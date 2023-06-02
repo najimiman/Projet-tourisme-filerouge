@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ThemeContext } from "../Context/context";
+import { FaHeart } from "react-icons/fa";
 export default function Homebeaches() {
-    const { APIDataplage,showFull,toggleConseil} = React.useContext(ThemeContext)
+    const { APIDataplage,showFull,toggleConseil,APIDataFavorite,handelefavorite} = React.useContext(ThemeContext)
+    const isFavorite = (item) => {
+        return APIDataFavorite.some((fav) => fav.cityplages_id === item.id);
+        };
     // console.log(showFull);
     return (
  
@@ -37,7 +41,11 @@ export default function Homebeaches() {
                                                 )}
                                                
                                            </p>
-                                       
+                                           <button class="btn waves-effect" onClick={()=>handelefavorite(data.id)}>
+                                            {/* <FaHeart style={{color: 'red', fontSize: '35px'}}/> */}
+                                            {/* {isFavorite(data) ? <FaHeart style={{color: 'red', fontSize: '35px'}} /> : null} */}
+                                            {isFavorite(data) ?<FaHeart style={{color: 'red', fontSize: '20px'}} /> : <FaHeart style={{fontSize: '20px'}}/>}
+                                        </button>
                                     </div>
 
                                 </div>

@@ -18,6 +18,7 @@ const [iduserT,setIduserT]=useState('');
 
 const [show, setShow] = useState(false);
 const [error, setError] = useState('');
+const [count, setCount] = useState(0);
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -114,18 +115,25 @@ async function handellogin(){
         console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
-        console.log('iduseeeee',response.data.token.id);
+        // console.log('iduseeeee',response.data.token.id);
+        
       } 
       // else{
       //   setError('Invalid username or password');
       //   setShowavatar(false);
       // }
       localStorage.setItem('user-info',JSON.stringify(response));
+      appelefavorite();
     } catch (error) {
       setError('Invalid username or password');
       localStorage.clear();
       // setShowavatar(false);
     }
+  }
+
+  function appelefavorite(){
+    let user=JSON.parse(localStorage.getItem('user-info'));
+    getfavorite(user.data.token.id);
   }
   function handelelogout() {
     localStorage.clear();
@@ -139,6 +147,7 @@ async function handellogin(){
       axios.get(`http://127.0.0.1:8000/api/getmyfavorite?iduser=${iduser}`).then(res=>{
         console.log(res.data);
         setAPIDataFavorite(res.data);
+        setCount(res.data.length);
       })
     }
   }
@@ -166,11 +175,10 @@ async function handellogin(){
   }
   
   const onDelete = (id) => {
-    console.log(id)
     axios.delete(`http://127.0.0.1:8000/api/destroy/${id}`)
       .then((res) => {
-        console.log('mmmmmmmmmmmmmmm');
         console.log(res.data);
+        appelefavorite();
       })
       .catch((error) => {
         console.error(error);
@@ -183,8 +191,8 @@ useEffect(()=>{
     if(localStorage.getItem('user-info')){
       let user=JSON.parse(localStorage.getItem('user-info'));
     
-      // setAvatar(user.data.token.email);
-      // setIduserT(user.data.token.id);
+      setAvatar(user.data.token.email);
+      setIduserT(user.data.token.id);
       console.log(user.data.token.id);
       getfavorite(user.data.token.id);
       }
@@ -194,7 +202,7 @@ useEffect(()=>{
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count}}>
         {Props.children}
     </ThemeContext.Provider>
 );

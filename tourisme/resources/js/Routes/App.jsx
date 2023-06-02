@@ -6,6 +6,7 @@ import Homebeaches from "../components/beaches/Home"
 import Login from "../components/Auth/Login"
 import Themeprovider from "../components/Context/context"
 import Registre from "../components/Auth/Registre"
+import Comment from "../components/comment/Comment"
 
 const App= () =>{
     return (
@@ -19,7 +20,7 @@ const App= () =>{
            <Route path='/'  element={<Home/>}/>
            <Route path='/city' exact element={<City/>}/>
            <Route path='/beaches' element={<Homebeaches/>}/>
-           
+           <Route path='/comment' element={<Comment/>}/>
            </Routes>
            </Themeprovider>
          </BrowserRouter>
