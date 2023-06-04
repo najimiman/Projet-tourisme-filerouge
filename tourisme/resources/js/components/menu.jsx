@@ -37,9 +37,9 @@ const Menu = () => {
               <li class="nav-item" role="presentation">
                 <Link class="nav-link" id="plages" to='/beaches' data-bs-target="#pills-plage" type="button" role="tab" aria-controls="pills-plage" aria-selected="false">Beaches</Link>
               </li>
-              <li class="nav-item" role="presentation">
+              {/* <li class="nav-item" role="presentation">
                 <Link class="nav-link" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Comment</Link>
-              </li>
+              </li> */}
               
               <li class="nav-item" role="presentation">
                 <Link class="nav-link btn btn-outline-primary waves-effect position-relative" id="favorite" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalfavorite">Favorite <span class="badge text-bg-secondary">
@@ -83,6 +83,16 @@ const Menu = () => {
                     <option value="Rabat" class="dropdown-item">Rabat</option>
                   </select>
                 </div> : null}
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="Auth" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Comment
+                </a>
+                <ul class="dropdown-menu">
+
+                  <li><a class="dropdown-item"  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModaladdcomment" data-bs-whatever="@getbootstrap">Add comment</a></li>
+                  <li><Link class="dropdown-item" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Show comment</Link></li>
+                </ul>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="Auth" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

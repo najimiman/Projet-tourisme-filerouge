@@ -7,6 +7,7 @@ import Login from "../components/Auth/Login"
 import Themeprovider from "../components/Context/context"
 import Registre from "../components/Auth/Registre"
 import Comment from "../components/comment/Comment"
+import Addcomment from "../components/comment/Addcomment"
 
 const App= () =>{
     return (
@@ -14,6 +15,7 @@ const App= () =>{
          <BrowserRouter>
          <Themeprovider>
             <Menu/>
+            <Addcomment/>
             <Login/>
             <Registre/>
            <Routes>
