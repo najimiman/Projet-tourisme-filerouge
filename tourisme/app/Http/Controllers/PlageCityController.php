@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cityplage;
+use App\Models\Commentaire;
 use App\Models\Fovorite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class PlageCityController extends Controller
 {
@@ -78,8 +82,38 @@ class PlageCityController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // if($request->has('Image')){
+        //     $file=$request->Image;
+        //     $Image=time(). '_' .$file->getClientOriginalName();
+        //     $file->move(public_path('imagecommentaire'),$Image);
+        //     }
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $imageName = $image->getClientOriginalName();
+        //     $image->save(public_path('images/'.$imageName));
+        //     $commentaire = Commentaire::create([
+        //         'image'=> $imageName,
+        //         'nomplace'=> $request->nomplace,
+        //         'description'=> $request->description,
+        //         'conseil'=> $request->conseil,
+        //         'User_id'=> $request->User_id,
+        //     ]);
+        //     return $commentaire;  
+        // } else {
+            
+        //     return "mmmmmm";
+        // }
+        $imagename=Str::random(6)."_".$request->image->getClientOriginalName();
+        $commentaire = Commentaire::create([
+            'image'=> $imagename,
+            'nomplace'=> $request->nomplace,
+            'description'=> $request->description,
+            'conseil'=> $request->conseil,
+            'User_id'=> $request->User_id,
+        ]);
+        Storage::disk('public')->put($imagename,file_get_contents($request->image));
+        return $commentaire;  
+        }
 
     /**
      * Display the specified resource.

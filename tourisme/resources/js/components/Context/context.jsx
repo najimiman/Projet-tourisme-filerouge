@@ -19,6 +19,13 @@ const [iduserT,setIduserT]=useState('');
 const [show, setShow] = useState(false);
 const [error, setError] = useState('');
 const [count, setCount] = useState(0);
+//comment
+const [Datacomment,setDatacomment]=useState([]);
+const [image,setImage]=useState('');
+const [nomplace,setNomplace]=useState('');
+const [description,setDescription]=useState('');
+const [conseil,setConseil]=useState('');
+
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -185,6 +192,22 @@ async function handellogin(){
       });
   }
 
+  function Addcomment(){
+    // name,email,password
+    console.log(image);
+    console.log(nomplace);
+    console.log(description);
+    console.log(conseil);
+    const User_id=iduserT;
+    axios.post('http://127.0.0.1:8000/api/addcommentaire',{image,nomplace,description,conseil,User_id}).then(res=>{
+        
+        console.log(res.data);
+        // setName("");
+        // setEmail("");
+        // setPassword("");
+    })
+}
+
 useEffect(()=>{
     getcity();
     getplages();
@@ -202,7 +225,8 @@ useEffect(()=>{
 
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
-    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count}}>
+    getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count,
+    setImage,setNomplace,setDescription,setConseil,Addcomment}}>
         {Props.children}
     </ThemeContext.Provider>
 );

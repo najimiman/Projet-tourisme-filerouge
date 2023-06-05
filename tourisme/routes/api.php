@@ -34,3 +34,4 @@ Route::post('addfavorite',[PlageCityController::class,'addfavorite']);
 Route::get('getFavorite',[PlageCityController::class,'getFavorite']);
 Route::get('getmyfavorite',[PlageCityController::class,'getmyfavorite']);
 Route::delete('destroy/{id}',[PlageCityController::class,'destroy']);
+Route::post('addcommentaire',[PlageCityController::class,'store']);
