@@ -1,12 +1,14 @@
 import { useState } from "react";
 import React from "react";
+import { ThemeContext } from "../Context/context";
 
 export default function Comment(){
+    const { Datacomment} = React.useContext(ThemeContext)
     const data = [1, 2, 3, 4, 55, 6];
     return(
         <div>
             <section class="card-area row">
-            {data.map(item => (
+            {Datacomment.map(item => (
       <section class="card-section col-md-5 mb-3">
       <div class="card-comment">
           <div class="flip-card">
@@ -50,9 +52,10 @@ export default function Comment(){
                       </div>
                   </div>
                   <div class="card-back">
-                      <video class="video__container" autoplay muted loop>
+                      {/* <video class="video__container" autoplay muted loop>
                           <source class="video__media" src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761" type="video/mp4"/>
-                      </video>
+                      </video> */}
+                      <img class="card-img-top hover-shadow" src={'/imagescomment/' + item.image} alt="Card image cap" />
                   </div>
               </div>
           </div>

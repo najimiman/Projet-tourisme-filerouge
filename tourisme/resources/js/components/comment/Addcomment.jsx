@@ -18,7 +18,7 @@ export default function Addcomment() {
                     </div>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">Image:</label>
-                      <input type="file" class="form-control" id="recipient-name" onChange={(e) => setImage(e.target.value)} />
+                      <input type="file" class="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
                     </div>
                     <div class="mb-3">
                       <label for="message-text" class="col-form-label">Description:</label>

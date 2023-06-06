@@ -198,19 +198,36 @@ async function handellogin(){
     console.log(nomplace);
     console.log(description);
     console.log(conseil);
-    const User_id=iduserT;
-    axios.post('http://127.0.0.1:8000/api/addcommentaire',{image,nomplace,description,conseil,User_id}).then(res=>{
-        
+    // const User_id=iduserT;
+    if(iduserT!=' '){
+    const formData=new FormData();
+    formData.append('image',image);
+    formData.append('nomplace',nomplace);
+    formData.append('description',description);
+    formData.append('conseil',conseil);
+    formData.append('User_id',iduserT);
+    axios.post('http://127.0.0.1:8000/api/addcommentaire',formData).then(res=>{
         console.log(res.data);
         // setName("");
         // setEmail("");
         // setPassword("");
     })
+  }
+}
+function getComment(){
+  // console.log('hada avatar likayn f favorite',iduser);
+  if(iduserT!=' '){
+    axios.get('http://127.0.0.1:8000/api/getComment').then(res=>{
+      console.log(res.data);
+      setDatacomment(res.data);
+    })
+  }
 }
 
 useEffect(()=>{
     getcity();
     getplages();
+    getComment();
     if(localStorage.getItem('user-info')){
       let user=JSON.parse(localStorage.getItem('user-info'));
     
@@ -226,7 +243,7 @@ useEffect(()=>{
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
     getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count,
-    setImage,setNomplace,setDescription,setConseil,Addcomment}}>
+    setImage,setNomplace,setDescription,setConseil,Addcomment,Datacomment}}>
         {Props.children}
     </ThemeContext.Provider>
 );

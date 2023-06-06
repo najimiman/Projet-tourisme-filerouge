@@ -69,6 +69,9 @@ class PlageCityController extends Controller
         ->get();
         return $listfavorite;
     }
+    function getComment(){
+        return Commentaire::all();
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -82,36 +85,24 @@ class PlageCityController extends Controller
      */
     public function store(Request $request)
     {
-        // if($request->has('Image')){
-        //     $file=$request->Image;
-        //     $Image=time(). '_' .$file->getClientOriginalName();
-        //     $file->move(public_path('imagecommentaire'),$Image);
-        //     }
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $imageName = $image->getClientOriginalName();
-        //     $image->save(public_path('images/'.$imageName));
-        //     $commentaire = Commentaire::create([
-        //         'image'=> $imageName,
-        //         'nomplace'=> $request->nomplace,
-        //         'description'=> $request->description,
-        //         'conseil'=> $request->conseil,
-        //         'User_id'=> $request->User_id,
-        //     ]);
-        //     return $commentaire;  
-        // } else {
-            
-        //     return "mmmmmm";
-        // }
-        $imagename=Str::random(6)."_".$request->image->getClientOriginalName();
+
+        // $file = $request->file('image');
+        // $filename = Str::random(6). '.' . $file->getClientOriginalExtension();
+        // $file->storeAs('public/imagescomment', $filename);
+        // $url = Storage::url('imagescomment/' . $filename);
+
+        $file=$request->file('image');
+        $Image=Str::random(6). '_' .$file->getClientOriginalName();
+        $file->move(public_path('imagescomment'),$Image);
+
         $commentaire = Commentaire::create([
-            'image'=> $imagename,
+            'image'=> $Image,
             'nomplace'=> $request->nomplace,
             'description'=> $request->description,
             'conseil'=> $request->conseil,
             'User_id'=> $request->User_id,
         ]);
-        Storage::disk('public')->put($imagename,file_get_contents($request->image));
+        // Storage::disk('public')->put($imagename,file_get_contents($request->image));
         return $commentaire;  
         }
 
