@@ -24,7 +24,8 @@ const [Datacomment,setDatacomment]=useState([]);
 const [image,setImage]=useState('');
 const [nomplace,setNomplace]=useState('');
 const [description,setDescription]=useState('');
-const [conseil,setConseil]=useState('');
+const [nomuser,setNomuser]=useState('');
+const [success, setSuccess] = useState(false);
 
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
@@ -110,6 +111,7 @@ function handelregistre(){
         setName("");
         setEmail("");
         setPassword("");
+        setSuccess(true);
     })
 }
 async function handellogin(){
@@ -122,6 +124,7 @@ async function handellogin(){
         console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
+        setSuccess(true);
         // console.log('iduseeeee',response.data.token.id);
         
       } 
@@ -197,17 +200,16 @@ async function handellogin(){
     console.log(image);
     console.log(nomplace);
     console.log(description);
-    console.log(conseil);
     // const User_id=iduserT;
     if(iduserT!=' '){
     const formData=new FormData();
     formData.append('image',image);
     formData.append('nomplace',nomplace);
     formData.append('description',description);
-    formData.append('conseil',conseil);
     formData.append('User_id',iduserT);
     axios.post('http://127.0.0.1:8000/api/addcommentaire',formData).then(res=>{
         console.log(res.data);
+        getComment();
         // setName("");
         // setEmail("");
         // setPassword("");
@@ -233,6 +235,7 @@ useEffect(()=>{
     
       setAvatar(user.data.token.email);
       setIduserT(user.data.token.id);
+      setNomuser(user.data.token.name);
       console.log(user.data.token.id);
       getfavorite(user.data.token.id);
       }
@@ -243,7 +246,7 @@ useEffect(()=>{
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
     getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count,
-    setImage,setNomplace,setDescription,setConseil,Addcomment,Datacomment}}>
+    setImage,setNomplace,setDescription,Addcomment,Datacomment,nomuser,success}}>
         {Props.children}
     </ThemeContext.Provider>
 );

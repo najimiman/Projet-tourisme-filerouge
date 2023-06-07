@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeContext } from "../Context/context";
 export default function Addcomment() {
-    const { setImage,setNomplace,setDescription,setConseil,Addcomment} = React.useContext(ThemeContext)
+    const { setImage,setNomplace,setDescription,Addcomment} = React.useContext(ThemeContext)
         return (
             <div class="modal fade" id="exampleModaladdcomment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -23,10 +23,6 @@ export default function Addcomment() {
                     <div class="mb-3">
                       <label for="message-text" class="col-form-label">Description:</label>
                       <textarea class="form-control" id="message-text" onChange={(e) => setDescription(e.target.value)} ></textarea>
-                    </div>
-                    <div class="mb-3">
-                      <label for="message-text" class="col-form-label">Conseil:</label>
-                      <textarea class="form-control" id="message-text" onChange={(e) => setConseil(e.target.value)} ></textarea>
                     </div>
                   </form>
                 </div>

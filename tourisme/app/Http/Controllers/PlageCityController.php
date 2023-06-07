@@ -99,7 +99,6 @@ class PlageCityController extends Controller
             'image'=> $Image,
             'nomplace'=> $request->nomplace,
             'description'=> $request->description,
-            'conseil'=> $request->conseil,
             'User_id'=> $request->User_id,
         ]);
         // Storage::disk('public')->put($imagename,file_get_contents($request->image));

@@ -1,8 +1,14 @@
 import React from "react";
 import { ThemeContext } from "../Context/context";
 export default function Login() {
-    const { handellogin,setEmail,setPassword} = React.useContext(ThemeContext)
+    const { handellogin,setEmail,setPassword,success} = React.useContext(ThemeContext)
         return (
+            <div>
+                {success && (
+                            <div class="alert alert-success" role="alert">
+                            A simple success alert—check it out!
+                        </div>
+                        )}
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamplelogin" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Login</h5>
@@ -36,6 +42,7 @@ export default function Login() {
 
 
                 </div>
+            </div>
             </div>
         );
     

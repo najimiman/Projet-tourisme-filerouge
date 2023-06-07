@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('nomplace');
-            $table->string('description')->nullable();
-            $table->string('conseil')->nullable();
+            $table->string('description');
             $table->bigInteger("User_id")->unsigned()->nullable();
             $table->foreign("User_id")
             ->references("id")
