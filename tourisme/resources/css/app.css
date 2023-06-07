@@ -294,10 +294,8 @@ body {
 /* For inside page's body text */
 .inside-page__text {
   color: #333;
-  /* height: 100px; 
-  overflow-y: scroll;
-  white-space: nowrap;
-  text-overflow: ellipsis; */
+  /* overflow-y: scroll; */
+ 
 }
 
 /* Icons ===========================================*/

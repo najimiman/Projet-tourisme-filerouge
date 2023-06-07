@@ -65,20 +65,17 @@ export default function Comment() {
                                     <h3 class="inside-page__heading inside-page__heading--city">
                                         {item.nomplace}
                                     </h3>
-                                    <p class="inside-page__text">
-                                        {/* {showFull[item.id]
+                                    <p class="inside-page__text text-break">
+                                        {showFull[item.id]
                                             ? item.description
                                             : `${item.description.slice(0, 20)}`}
                                         {item.description.length > 20 && (
                                             <button type="button" class="btn btn-link" onClick={() => toggleConseil(item.id)}>
                                                 {showFull[item.id] ? 'Read Less' : 'Read More'}
                                             </button>
-                                        )} */}
+                                        )}
 
-                                        {item.description}
-                                        {/* Relax and get sun-kissed tan 
-                                        in the sea or take up surfting 
-                                        for an adventure! */}
+                                        {/* {item.description} */}
                                     </p>
                                     {/* <a href="#" class="inside-page__btn inside-page__btn--city">View deals</a> */}
                                 </div>

@@ -1,15 +1,26 @@
 import React from "react";
 import { ThemeContext } from "../Context/context";
+import { Alert } from "react-bootstrap";
 export default function Login() {
-    const { handellogin,setEmail,setPassword,success} = React.useContext(ThemeContext)
-        return (
-            <div>
-                {success && (
-                            <div class="alert alert-success" role="alert">
-                            A simple success alert—check it out!
-                        </div>
-                        )}
+    const { handellogin, setEmail, setPassword, success, errore ,alertData} = React.useContext(ThemeContext)
+    return (
+        <div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamplelogin" aria-labelledby="offcanvasExampleLabel">
+                {/* {success && (
+                    <Alert className="w-30 p-3 ml-7 mt-2 position-absolute" variant="success">
+                        This is a success alert!
+                    </Alert>
+                )}
+                {errore && (
+                    <Alert variant="danger">
+                        Invalid username or password
+                    </Alert>
+                )} */}
+                 {alertData && (
+                    <Alert variant={alertData.type}>
+                    {alertData.message}
+                    </Alert>
+                )}
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -24,15 +35,15 @@ export default function Login() {
                                 Twitter
                             </div>
                             <div class="p-3 mt-3">
-                            <div class="form-field d-flex align-items-center">
+                                <div class="form-field d-flex align-items-center">
                                     <span class="fas fa-at"></span>
                                     <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                                 </div>
                                 <div class="form-field d-flex align-items-center">
                                     <span class="fas fa-key"></span>
-                                    <input type="password" name="password" id="pwd" onChange={(e) => setPassword(e.target.value)}  placeholder="Password" />
+                                    <input type="password" name="password" id="pwd" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                                 </div>
-                                <button class="btn mt-3" onClick={()=>handellogin()} >Login</button>
+                                <button class="btn mt-3" onClick={() => handellogin()} >Login</button>
                             </div>
                             <div class="text-center fs-6">
                                 <a href="#">Forget password?</a> or <a data-bs-toggle="offcanvas" href="#offcanvasExampleregistre" role="button" aria-controls="offcanvasExample">Registre</a>
@@ -43,7 +54,7 @@ export default function Login() {
 
                 </div>
             </div>
-            </div>
-        );
-    
+        </div>
+    );
+
 }

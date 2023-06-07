@@ -4,14 +4,20 @@ import React, { useEffect, useState } from "react";
 import Modal from "./Model";
 import { ThemeContext } from "../Context/context";
 import { FaHeart } from "react-icons/fa";
+import { Alert } from "react-bootstrap";
 
 export default function City() {
-    const { APIData,handleModal,datades,showFull,toggleConseil,handelefavorite,APIDataFavorite} = React.useContext(ThemeContext)
+    const { APIData,handleModal,datades,showFull,toggleConseil,handelefavorite,APIDataFavorite,alertData} = React.useContext(ThemeContext)
     const isFavorite = (item) => {
         return APIDataFavorite.some((fav) => fav.cityplages_id === item.id);
         };
     return (
         <div className="p-2">
+              {alertData && (
+                    <Alert variant={alertData.type}>
+                    {alertData.message}
+                    </Alert>
+                )}
             {/* style={{backgroundImage:`url("im1.jpg")`,backgroundSize:'contain'}} */}
             {/* <h1>hello city</h1> */}
             <div class="container">

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ThemeContext=React.createContext();
 export default function Themeprovider(Props){
@@ -17,7 +18,7 @@ const [avatar,setAvatar]=useState('');
 const [iduserT,setIduserT]=useState('');
 
 const [show, setShow] = useState(false);
-const [error, setError] = useState('');
+// const [error, setError] = useState('');
 const [count, setCount] = useState(0);
 //comment
 const [Datacomment,setDatacomment]=useState([]);
@@ -25,7 +26,27 @@ const [image,setImage]=useState('');
 const [nomplace,setNomplace]=useState('');
 const [description,setDescription]=useState('');
 const [nomuser,setNomuser]=useState('');
-const [success, setSuccess] = useState(false);
+const [alertData, setAlertData] = useState(null);
+const navigate = useNavigate();
+
+//alert message
+function showAlert(type, delay) {
+  setTimeout(() => {
+    switch (type) {
+      case 'success':
+        setAlertData({ type: 'success', message: 'Task completed successfully' });
+        break;
+      case 'warning':
+        setAlertData({ type: 'warning', message: 'Task has a warning' });
+        break;
+      case 'error':
+        setAlertData({ type: 'danger', message: 'Task failed with an error' });
+        break;
+      default:
+        setAlertData(null);
+    }
+  }, delay);
+}
 
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
@@ -106,12 +127,10 @@ function handelregistre(){
     console.log(password);
     const role="user";
     axios.post('http://127.0.0.1:8000/api/register',{name,email,password,role}).then(res=>{
-        setTokenid(res.data.token.tokenable_id);
         console.log(res.data);
         setName("");
         setEmail("");
         setPassword("");
-        setSuccess(true);
     })
 }
 async function handellogin(){
@@ -124,9 +143,7 @@ async function handellogin(){
         console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
-        setSuccess(true);
-        // console.log('iduseeeee',response.data.token.id);
-        
+        showAlert('success', 3000);
       } 
       // else{
       //   setError('Invalid username or password');
@@ -135,9 +152,9 @@ async function handellogin(){
       localStorage.setItem('user-info',JSON.stringify(response));
       appelefavorite();
     } catch (error) {
-      setError('Invalid username or password');
+      // setError('Invalid username or password');
+      showAlert('error', 3000)
       localStorage.clear();
-      // setShowavatar(false);
     }
   }
 
@@ -163,9 +180,9 @@ async function handellogin(){
   }
 
   function handelefavorite(idcityplages){
-    if(avatar!=' '){
+    if(avatar!=''){
       let user=JSON.parse(localStorage.getItem('user-info'));
-      console.log(user.data.token.id);
+      // console.log(user.data.token.id);
       let cityplages_id=idcityplages;
       let User_id=user.data.token.id;
       const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
@@ -180,7 +197,8 @@ async function handellogin(){
       }
     }
     else{
-      alert('login');
+      // alert('login');
+      showAlert('error', 3000)
     }
   }
   
@@ -246,7 +264,7 @@ useEffect(()=>{
 return (
     <ThemeContext.Provider value={{APIData,handelfilter,handelregistre,setName,setEmail,setPassword,handleModal,datades,
     getplages,APIDataplage,showFull,toggleConseil,handelclikc,show,handellogin,avatar,handelelogout,handelefavorite,APIDataFavorite,onDelete,count,
-    setImage,setNomplace,setDescription,Addcomment,Datacomment,nomuser,success}}>
+    setImage,setNomplace,setDescription,Addcomment,Datacomment,nomuser,alertData}}>
         {Props.children}
     </ThemeContext.Provider>
 );

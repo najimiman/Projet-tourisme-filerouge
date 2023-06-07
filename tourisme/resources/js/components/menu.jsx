@@ -5,11 +5,12 @@ import Login from "./Auth/Login";
 import City from "./city/City";
 import { ThemeContext } from "./Context/context";
 import Favorite from "./Favorite/favorite";
+import { Alert } from "react-bootstrap";
 
 
 const Menu = () => {
   const links = document.querySelectorAll("nav a");
-  const { handelclikc, show, handelfilter, avatar, handelelogout ,count} = React.useContext(ThemeContext)
+  const { handelclikc, show, handelfilter, avatar, handelelogout ,count,success} = React.useContext(ThemeContext)
 
 
   links.forEach(link => {
