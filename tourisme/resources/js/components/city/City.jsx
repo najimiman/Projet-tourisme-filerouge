@@ -14,7 +14,7 @@ export default function City() {
     return (
         <div className="p-2">
               {alertData && (
-                    <Alert variant={alertData.type}>
+                    <Alert variant={alertData.type} closable>
                     {alertData.message}
                     </Alert>
                 )}

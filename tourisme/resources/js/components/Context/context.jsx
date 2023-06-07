@@ -30,17 +30,17 @@ const [alertData, setAlertData] = useState(null);
 const navigate = useNavigate();
 
 //alert message
-function showAlert(type, delay) {
+function showAlert(type,message,delay) {
   setTimeout(() => {
     switch (type) {
       case 'success':
-        setAlertData({ type: 'success', message: 'Task completed successfully' });
+        setAlertData({ type: 'success', message});
         break;
       case 'warning':
-        setAlertData({ type: 'warning', message: 'Task has a warning' });
+        setAlertData({ type: 'warning', message});
         break;
       case 'error':
-        setAlertData({ type: 'danger', message: 'Task failed with an error' });
+        setAlertData({ type: 'danger', message});
         break;
       default:
         setAlertData(null);
@@ -143,7 +143,7 @@ async function handellogin(){
         console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
-        showAlert('success', 3000);
+        showAlert('success','login', 3000);
       } 
       // else{
       //   setError('Invalid username or password');
@@ -153,7 +153,7 @@ async function handellogin(){
       appelefavorite();
     } catch (error) {
       // setError('Invalid username or password');
-      showAlert('error', 3000)
+      showAlert('error', 'Invalid username or password',2000)
       localStorage.clear();
     }
   }
@@ -198,7 +198,7 @@ async function handellogin(){
     }
     else{
       // alert('login');
-      showAlert('error', 3000)
+      showAlert('error','for favorite login', 3000)
     }
   }
   
