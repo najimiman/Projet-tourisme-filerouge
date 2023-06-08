@@ -6,21 +6,12 @@ export default function Login() {
     return (
         <div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamplelogin" aria-labelledby="offcanvasExampleLabel">
-                {/* {success && (
-                    <Alert className="w-30 p-3 ml-7 mt-2 position-absolute" variant="success">
-                        This is a success alert!
+                 {alertData && (alertData[2] === "loginError" || alertData[2] === "loginsuccess") && (
+                    <Alert variant={alertData[0]}>
+                    {alertData[1]}
                     </Alert>
                 )}
-                {errore && (
-                    <Alert variant="danger">
-                        Invalid username or password
-                    </Alert>
-                )} */}
-                 {alertData && (
-                    <Alert variant={alertData.type}>
-                    {alertData.message}
-                    </Alert>
-                )}
+                {console.log(alertData)}
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasExampleLabel">Login</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

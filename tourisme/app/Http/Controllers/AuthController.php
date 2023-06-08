@@ -17,12 +17,12 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $token = $user->createToken('MyToken')->accessToken;
+            //$token = $user->createToken('MyToken')->accessToken;
             // return response()->json(['token' => $token], 200);
             return response()->json(['token' => $user], 200);
         } else {
             // return response()->json(['error' => 'Unauthorized'], 401);
-            return response()->json(['error' => 'Unauthorized']);
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
     public function register(Request $request)

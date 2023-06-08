@@ -13,9 +13,9 @@ export default function City() {
         };
     return (
         <div className="p-2">
-              {alertData && (
-                    <Alert variant={alertData.type} closable>
-                    {alertData.message}
+               {alertData && alertData[2] == "favorite" && (
+                    <Alert variant={alertData[0]}>
+                    {alertData[1]}
                     </Alert>
                 )}
             {/* style={{backgroundImage:`url("im1.jpg")`,backgroundSize:'contain'}} */}

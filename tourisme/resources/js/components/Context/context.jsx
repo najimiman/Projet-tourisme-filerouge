@@ -29,25 +29,6 @@ const [nomuser,setNomuser]=useState('');
 const [alertData, setAlertData] = useState(null);
 const navigate = useNavigate();
 
-//alert message
-function showAlert(type,message,delay) {
-  setTimeout(() => {
-    switch (type) {
-      case 'success':
-        setAlertData({ type: 'success', message});
-        break;
-      case 'warning':
-        setAlertData({ type: 'warning', message});
-        break;
-      case 'error':
-        setAlertData({ type: 'danger', message});
-        break;
-      default:
-        setAlertData(null);
-    }
-  }, delay);
-}
-
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -134,27 +115,26 @@ function handelregistre(){
     })
 }
 async function handellogin(){
-  console.log(email);
-    console.log(password);
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login',{email,password});
-      if (response.status === 200) {
+     //if (response.status === 200) {
         // setShowavatar(true);
-        console.log(response.data.token);
+        //console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
-        showAlert('success','login', 3000);
-      } 
+        // showAlert('success','login', 3000);
+        setAlertData(['success','success login hello ' + response.data.token.name,'loginsuccess',2000])
+      //} 
       // else{
       //   setError('Invalid username or password');
       //   setShowavatar(false);
       // }
       localStorage.setItem('user-info',JSON.stringify(response));
       appelefavorite();
-    } catch (error) {
-      // setError('Invalid username or password');
-      showAlert('error', 'Invalid username or password',2000)
-      localStorage.clear();
+    }catch(error) {
+        console.log(error.response.statusText)
+        //setAlertData('error', error.response.statusText,2000)
+        setAlertData(['danger',error.response.statusText,'loginError',2000])
     }
   }
 
@@ -188,7 +168,7 @@ async function handellogin(){
       const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
       if(!filteredData){
         axios.post('http://127.0.0.1:8000/api/addfavorite',{cityplages_id,User_id}).then(res => {
-              console.log(res.data);
+              console.log(res);
               getfavorite(User_id);
             })
       }
@@ -198,7 +178,8 @@ async function handellogin(){
     }
     else{
       // alert('login');
-      showAlert('error','for favorite login', 3000)
+      console.log('for favorite login')
+      setAlertData(['danger','for favorite login','favorite',2000])
     }
   }
   
