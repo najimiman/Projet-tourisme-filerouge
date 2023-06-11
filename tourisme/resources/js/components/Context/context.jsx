@@ -117,14 +117,14 @@ function handelregistre(){
 async function handellogin(){
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login',{email,password});
-     //if (response.status === 200) {
+     if (response.status === 200) {
         // setShowavatar(true);
         //console.log(response.data.token);
         setAvatar(response.data.token.email);
         setIduserT(response.data.token.id);
         // showAlert('success','login', 3000);
         setAlertData(['success','success login hello ' + response.data.token.name,'loginsuccess',2000])
-      //} 
+      } 
       // else{
       //   setError('Invalid username or password');
       //   setShowavatar(false);
@@ -134,7 +134,7 @@ async function handellogin(){
     }catch(error) {
         console.log(error.response.statusText)
         //setAlertData('error', error.response.statusText,2000)
-        setAlertData(['danger',error.response.statusText,'loginError',2000])
+        setAlertData(['danger',error.response.statusText,'loginError'])
     }
   }
 
@@ -179,7 +179,10 @@ async function handellogin(){
     else{
       // alert('login');
       console.log('for favorite login')
-      setAlertData(['danger','for favorite login','favorite',2000])
+      setAlertData(['danger','for favorite login','favorite'])
+      // setTimeout(() => {
+      //   setAlertData(['danger','for favorite login','favorite']);
+      // }, 2000);
     }
   }
   

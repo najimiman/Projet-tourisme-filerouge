@@ -14,7 +14,7 @@ export default function City() {
     return (
         <div className="p-2">
                {alertData && alertData[2] == "favorite" && (
-                    <Alert variant={alertData[0]}>
+                    <Alert variant={alertData[0]} dismissible>
                     {alertData[1]}
                     </Alert>
                 )}

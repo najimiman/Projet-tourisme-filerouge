@@ -18,10 +18,10 @@ export default function Registre() {
                 <div>
                     <div class="wrapper">
                         <div class="logo">
-                            <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="" />
+                        <img src="logologin.jpg" alt="" />
                         </div>
                         <div class="text-center mt-4 name">
-                            Twitter
+                            Registre
                         </div>
                         <div class="p-3 mt-3">
                             <div class="form-field d-flex align-items-center">

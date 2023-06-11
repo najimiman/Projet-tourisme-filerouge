@@ -20,25 +20,16 @@ export default function Home(){
      </div>
      <div class="carousel-item active"  data-bs-interval="10000">
        {/* <img src="maroc-agadir-marina.png" class="d-block w-100 p-3" alt="..."/> */}
-       <video class="video-fluid d-block" id="v1" src="video1.mp4" type="video/mp4" loop muted autoPlay="autoPlay"></video>
-       {/* <div> */}
-       {/* <h1>Hello! How are you?<br/><span class="ityped" ref={textRef}></span></h1>
-       steps={['Hello', 1000, 'Hi there', 500, 'Welcome', 1000]} */}
-       {/* <Typical
-         loop={Infinity}
-         steps={['Le Maroc est un pays dAfrique du Nord situé à gauche de lAlgérie. Sa capitale est Rabat et la capitale économique',10000, 'I make web sites using php and js',2000, 'It is very interesting!',500]}
-         wrapper="h1"
-       />
-       </div> */}
+       <video class="video-fluid d-block videos"  src="sahara.mp4" type="video/mp4" loop muted autoPlay="autoPlay"></video>
      </div>
      <div class="carousel-item" data-bs-interval="10000">
        {/* <img src="cap-spartel.png" class="d-block w-100 p-3" alt="..."/> */}
-       <video class="video-fluid" style={{ height: '554px' }} loop muted autoPlay="autoPlay">
-         <source src="video2.mp4" type="video/mp4"></source>
+       <video class="d-block w-100" loop muted autoPlay="autoPlay" src="video3.mp4" type="video/mp4">
+         {/* <source  class="" src="video2.mp4" type="video/mp4"></source> */}
        </video>
      </div>
      <div class="carousel-item" data-bs-interval="10000">
-       <img src="maroc-agadir-kasbah.png" class="d-block w-100 p-3" alt="..." />
+     <video class="d-block w-100" loop muted autoPlay="autoPlay" src="video1.mp4" type="video/mp4"/>
      </div>
    </div>
    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">

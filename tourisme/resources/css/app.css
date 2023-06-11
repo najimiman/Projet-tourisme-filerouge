@@ -3,9 +3,8 @@ nav .active {
   font-weight: bold;
   text-decoration: underline;
 }
-
 /* home */
-#v1 {
+.videos {
  
     /* display: block; */
     margin-left: auto;
@@ -14,7 +13,10 @@ nav .active {
     height: 700px;
    
   }
-    
+    /* #travel{
+      max-width: 30%;
+      max-height: 20%;
+    } */
   
   .content{
     position: absolute;

@@ -7,7 +7,7 @@ export default function Login() {
         <div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamplelogin" aria-labelledby="offcanvasExampleLabel">
                  {alertData && (alertData[2] === "loginError" || alertData[2] === "loginsuccess") && (
-                    <Alert variant={alertData[0]}>
+                    <Alert variant={alertData[0]} dismissible>
                     {alertData[1]}
                     </Alert>
                 )}
@@ -20,10 +20,10 @@ export default function Login() {
                     <div>
                         <div class="wrapper">
                             <div class="logo">
-                                <img src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png" alt="" />
+                                <img src="logologin.jpg" alt="" />
                             </div>
                             <div class="text-center mt-4 name">
-                                Twitter
+                                Login
                             </div>
                             <div class="p-3 mt-3">
                                 <div class="form-field d-flex align-items-center">
