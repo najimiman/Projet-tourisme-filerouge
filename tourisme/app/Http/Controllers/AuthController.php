@@ -19,7 +19,7 @@ class AuthController extends Controller
             $user = Auth::user();
             //$token = $user->createToken('MyToken')->accessToken;
             // return response()->json(['token' => $token], 200);
-            return response()->json(['token' => $user], 200);
+            return response()->json(['user' => $user], 200);
         } else {
             // return response()->json(['error' => 'Unauthorized'], 401);
             return response()->json(['error' => 'Unauthorized'], 401);
