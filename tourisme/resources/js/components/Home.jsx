@@ -20,7 +20,8 @@ export default function Home(){
      </div>
      <div class="carousel-item active"  data-bs-interval="10000">
        {/* <img src="maroc-agadir-marina.png" class="d-block w-100 p-3" alt="..."/> */}
-       <video class="video-fluid d-block videos"  src="sahara.mp4" type="video/mp4" loop muted autoPlay="autoPlay"></video>
+       {/* <video class="video-fluid d-block videos"  src="sahara.mp4" type="video/mp4" loop muted autoPlay="autoPlay"></video> */}
+       <video class="d-block w-100" loop muted autoPlay="autoPlay" src="sahara.mp4" type="video/mp4"/>
      </div>
      <div class="carousel-item" data-bs-interval="10000">
        {/* <img src="cap-spartel.png" class="d-block w-100 p-3" alt="..."/> */}

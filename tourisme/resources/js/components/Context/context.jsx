@@ -101,18 +101,25 @@ function toggleConseil(id){
   };
 
 
-function handelregistre(){
-    // name,email,password
-    console.log(name);
+async function handelregistre(){
+try {
+   console.log(name);
     console.log(email);
     console.log(password);
     const role="user";
-    axios.post('http://127.0.0.1:8000/api/register',{name,email,password,role}).then(res=>{
-        console.log(res.data);
-        setName("");
-        setEmail("");
-        setPassword("");
-    })
+  const response = await axios.post('http://127.0.0.1:8000/api/register',{name,email,password,role});
+ if (response.status === 200) {
+    setAlertData(['success','success Registre go to login' + name,'Registresuccess'])
+    setName("");
+    setEmail("");
+    setPassword("");
+  } 
+}catch(error) {
+    // console.log(error.response.statusText)
+    // console.log(error.response.data.error)
+    setAlertData(['danger',error.response.data.error,'RegistreError'])
+}
+
 }
 async function handellogin(){
     try {
@@ -120,10 +127,10 @@ async function handellogin(){
      if (response.status === 200) {
         // setShowavatar(true);
         //console.log(response.data.token);
-        setAvatar(response.data.token.email);
-        setIduserT(response.data.token.id);
+        setAvatar(response.data.user.email);
+        setIduserT(response.data.user.id);
         // showAlert('success','login', 3000);
-        setAlertData(['success','success login hello ' + response.data.token.name,'loginsuccess',2000])
+        setAlertData(['success','success login hello ' + response.data.user.name,'loginsuccess',2000])
       } 
       // else{
       //   setError('Invalid username or password');
@@ -140,7 +147,7 @@ async function handellogin(){
 
   function appelefavorite(){
     let user=JSON.parse(localStorage.getItem('user-info'));
-    getfavorite(user.data.token.id);
+    getfavorite(user.data.user.id);
   }
   function handelelogout() {
     localStorage.clear();
@@ -164,7 +171,7 @@ async function handellogin(){
       let user=JSON.parse(localStorage.getItem('user-info'));
       // console.log(user.data.token.id);
       let cityplages_id=idcityplages;
-      let User_id=user.data.token.id;
+      let User_id=user.data.user.id;
       const filteredData=APIDataFavorite.find((item) => item.cityplages_id === cityplages_id);
       if(!filteredData){
         axios.post('http://127.0.0.1:8000/api/addfavorite',{cityplages_id,User_id}).then(res => {
@@ -235,11 +242,11 @@ useEffect(()=>{
     if(localStorage.getItem('user-info')){
       let user=JSON.parse(localStorage.getItem('user-info'));
     
-      setAvatar(user.data.token.email);
-      setIduserT(user.data.token.id);
-      setNomuser(user.data.token.name);
-      console.log(user.data.token.id);
-      getfavorite(user.data.token.id);
+      setAvatar(user.data.user.email);
+      setIduserT(user.data.user.id);
+      setNomuser(user.data.user.name);
+      console.log(user.data.user.id);
+      getfavorite(user.data.user.id);
       }
     },[iduserT])
 

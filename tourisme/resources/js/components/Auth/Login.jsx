@@ -20,7 +20,7 @@ export default function Login() {
                     <div>
                         <div class="wrapper">
                             <div class="logo">
-                                <img src="logologin.jpg" alt="" />
+                                <img src="logo4.jpg" alt="" />
                             </div>
                             <div class="text-center mt-4 name">
                                 Login

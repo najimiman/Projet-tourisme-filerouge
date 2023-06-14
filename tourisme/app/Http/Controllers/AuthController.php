@@ -35,11 +35,17 @@ class AuthController extends Controller
         // if ($validator->fails()) {
         //     return response()->json(['error' => $validator->errors()], 422);
         // }
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $token = $user->createToken('MyToken')->accessToken;
         return response()->json(['token' => $token], 200);
+        }
+        else {
+            return response()->json(['error' => 'this email déja existe'], 401);
+        }
     }
     public function logout(Request $request)
     {

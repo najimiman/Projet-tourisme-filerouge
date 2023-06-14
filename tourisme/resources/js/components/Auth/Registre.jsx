@@ -2,12 +2,17 @@ import React from "react";
 import { ThemeContext } from "../Context/context";
 import { Alert } from "react-bootstrap";
 export default function Registre() {
-    const { handelregistre, setName, setEmail, setPassword,success } = React.useContext(ThemeContext)
+    const { handelregistre, setName, setEmail, setPassword,alertData } = React.useContext(ThemeContext)
     return (
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExampleregistre" aria-labelledby="offcanvasExampleLabel">
-             {success && (
+             {/* {success && (
                     <Alert className="w-30 p-3 ml-7 mt-2 position-absolute" variant="success">
                         This is a success alert!
+                    </Alert>
+                )} */}
+                {alertData && (alertData[2] === "RegistreError" || alertData[2] === "Registresuccess") && (
+                    <Alert variant={alertData[0]} dismissible>
+                    {alertData[1]}
                     </Alert>
                 )}
             <div class="offcanvas-header">
@@ -18,7 +23,7 @@ export default function Registre() {
                 <div>
                     <div class="wrapper">
                         <div class="logo">
-                        <img src="logologin.jpg" alt="" />
+                        <img src="logo4.jpg" alt="" />
                         </div>
                         <div class="text-center mt-4 name">
                             Registre
