@@ -240,13 +240,13 @@ useEffect(()=>{
     getplages();
     getComment();
     if(localStorage.getItem('user-info')){
-      let user=JSON.parse(localStorage.getItem('user-info'));
+      let usere=JSON.parse(localStorage.getItem('user-info'));
     
-      setAvatar(user.data.user.email);
-      setIduserT(user.data.user.id);
-      setNomuser(user.data.user.name);
-      console.log(user.data.user.id);
-      getfavorite(user.data.user.id);
+      setAvatar(usere.data.user.email);
+      setIduserT(usere.data.user.id);
+      setNomuser(usere.data.user.name);
+      console.log(usere.data.user.id);
+      getfavorite(usere.data.user.id);
       }
     },[iduserT])
 
