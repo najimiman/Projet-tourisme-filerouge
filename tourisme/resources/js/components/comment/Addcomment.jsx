@@ -1,9 +1,15 @@
 import React from "react";
 import { ThemeContext } from "../Context/context";
+import { Alert } from "react-bootstrap";
 export default function Addcomment() {
-    const { setImage,setNomplace,setDescription,Addcomment} = React.useContext(ThemeContext)
+    const { setImage,setNomplace,setDescription,Addcomment,alertData} = React.useContext(ThemeContext)
         return (
             <div class="modal fade" id="exampleModaladdcomment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            {alertData && alertData[2] == "commentsuccess" && (
+                    <Alert variant={alertData[0]} dismissible>
+                    {alertData[1]}
+                    </Alert>
+                )}
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">

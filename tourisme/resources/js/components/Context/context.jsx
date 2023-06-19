@@ -29,6 +29,7 @@ const [nomuser,setNomuser]=useState('');
 const [alertData, setAlertData] = useState(null);
 const navigate = useNavigate();
 
+//get liste place city
 function getcity(){
     axios.get(`http://127.0.0.1:8000/api/cityplace`).then(res => {
             console.log(res.data);
@@ -36,6 +37,7 @@ function getcity(){
         })
             
 }
+//get liste plages
 function getplages(){
     axios.get(`http://127.0.0.1:8000/api/plages`).then(res => {
             console.log(res.data);
@@ -44,7 +46,7 @@ function getplages(){
         })
             
 }
-
+//filter par city
 function handelfilter(valuecity){
     console.log("value ciiiiiiiiiiity",valuecity);
     if(valuecity!="vide"){
@@ -71,7 +73,7 @@ function handelfilter(valuecity){
     }
 }
 
-
+//show and hide dropdown city
 const handelclikc=(e)=>{
     const filterValue = e.target.getAttribute('id');
     // console.log("hadi filter value",filterValue);
@@ -83,14 +85,15 @@ const handelclikc=(e)=>{
       }
   }
 
+//model description place city
 function handleModal(id){
     axios.get(`http://127.0.0.1:8000/api/edit/${id}`)
     .then(res => {
       console.log(res.data)
       setDatades(res.data);
     })
-    console.log(`Opening modal for item with ID ${id}`);
   };
+
 //read more read less
 function toggleConseil(id){
     console.log("id",id);
@@ -100,7 +103,7 @@ function toggleConseil(id){
     }));
   };
 
-
+//authentification registre
 async function handelregistre(){
 try {
    console.log(name);
@@ -121,6 +124,8 @@ try {
 }
 
 }
+
+//authentification login
 async function handellogin(){
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/login',{email,password});
@@ -145,16 +150,20 @@ async function handellogin(){
     }
   }
 
+//appele liste favorite de user
   function appelefavorite(){
     let user=JSON.parse(localStorage.getItem('user-info'));
     getfavorite(user.data.user.id);
   }
+
+  //authentification logout
   function handelelogout() {
     localStorage.clear();
     setAvatar('');
     getfavorite('');
   }
 
+//get favorite user
   function getfavorite(iduser){
     // console.log('hada avatar likayn f favorite',iduser);
     if(iduserT!=' '){
@@ -166,6 +175,7 @@ async function handellogin(){
     }
   }
 
+//add favorite
   function handelefavorite(idcityplages){
     if(avatar!=''){
       let user=JSON.parse(localStorage.getItem('user-info'));
@@ -192,7 +202,8 @@ async function handellogin(){
       // }, 2000);
     }
   }
-  
+
+  //delete favorite
   const onDelete = (id) => {
     axios.delete(`http://127.0.0.1:8000/api/destroy/${id}`)
       .then((res) => {
@@ -204,6 +215,7 @@ async function handellogin(){
       });
   }
 
+//add comment 
   function Addcomment(){
     // name,email,password
     console.log(image);
@@ -219,12 +231,13 @@ async function handellogin(){
     axios.post('http://127.0.0.1:8000/api/addcommentaire',formData).then(res=>{
         console.log(res.data);
         getComment();
-        // setName("");
-        // setEmail("");
-        // setPassword("");
+        setAlertData(['success','success','commentsuccess'])
+        
     })
   }
 }
+
+//afficher les commandes 
 function getComment(){
   // console.log('hada avatar likayn f favorite',iduser);
   if(iduserT!=' '){
