@@ -32,12 +32,12 @@ export default function Login() {
                                 </div>
                                 <div class="form-field d-flex align-items-center">
                                     <span class="fas fa-key"></span>
-                                    <input type="password" name="password" id="pwd" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                                    <input type="password" name="mot de passe" id="pwd" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                                 </div>
                                 <button class="btn mt-3" onClick={() => handellogin()} >Login</button>
                             </div>
                             <div class="text-center fs-6">
-                                <a href="#">Forget password?</a> or <a data-bs-toggle="offcanvas" href="#offcanvasExampleregistre" role="button" aria-controls="offcanvasExample">Registre</a>
+                                <a href="#">Mot de passe oublié ?</a> ou <a data-bs-toggle="offcanvas" href="#offcanvasExampleregistre" role="button" aria-controls="offcanvasExample">Registre</a>
                             </div>
                         </div>
                     </div>

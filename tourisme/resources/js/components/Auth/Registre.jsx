@@ -31,7 +31,7 @@ export default function Registre() {
                         <div class="p-3 mt-3">
                             <div class="form-field d-flex align-items-center">
                                 <span class="far fa-user"></span>
-                                <input type="text" name="userName" onChange={(e) => setName(e.target.value)} id="userName" placeholder="Username" />
+                                <input type="text" name="Nom" onChange={(e) => setName(e.target.value)} id="userName" placeholder="Username" />
                             </div>
                             <div class="form-field d-flex align-items-center">
                                 <span class="fas fa-at"></span>
@@ -39,12 +39,12 @@ export default function Registre() {
                             </div>
                             <div class="form-field d-flex align-items-center">
                                 <span class="fas fa-key"></span>
-                                <input type="password" name="password" id="pwd" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                                <input type="password" name="mot de passe" id="pwd" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                             </div>
                             <button class="btn mt-3" onClick={() => handelregistre()}>Registre</button>
                         </div>
                         <div class="text-center fs-6">
-                            <a href="#">Forget password?</a> or <a data-bs-toggle="offcanvas" href="#offcanvasExamplelogin" role="button" aria-controls="offcanvasExample">Login</a>
+                            <a href="#">Mot de passe oublié ?</a> ou <a data-bs-toggle="offcanvas" href="#offcanvasExamplelogin" role="button" aria-controls="offcanvasExample">Login</a>
                         </div>
                     </div>
                 </div>

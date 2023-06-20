@@ -48,7 +48,7 @@ export default function City() {
                                             : `${data.conseil.slice(0, 100)}`}
                                             {data.conseil.length > 100 && (
                                             <button type="button" class="btn btn-link" onClick={() => toggleConseil(data.id)}>
-                                            {showFull[data.id] ? 'Read Less' : 'Read More'}
+                                            {showFull[data.id] ? 'Lire moins' : 'Lire plus'}
                                         </button>
                                         )}
                                             

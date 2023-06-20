@@ -47,7 +47,7 @@ export default function Comment() {
 
                                         <div class="card-front__bt">
                                             <p class="card-front__text-view card-front__text-view--city">
-                                                View me
+                                            Découvrir
                                             </p>
                                         </div>
                                     </div>

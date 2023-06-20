@@ -9,7 +9,7 @@ export default function Home(){
        <Typical
          id="text"
          loop={Infinity}
-         steps={['Le Maroc est un pays dAfrique du Nord situé à gauche de lAlgérie. Sa capitale est Rabat et la capitale économique',10000, 'I make web sites using php and js',2000, 'It is very interesting!',500]}
+         steps={["Bienvenue au Maroc !",1000,"Plongez dans l'univers fascinant des palais, des jardins, des mosquées et des monuments historiques du Maroc, une destination culturelle et artistique de renommée mondiale.",10000, "Explorez les villes impériales, les souks animés, les oasis verdoyantes et les déserts spectaculaires du Maroc, une terre de contrastes et d'émerveillement.",10000]}
          wrapper="h1"
        />
      </div>

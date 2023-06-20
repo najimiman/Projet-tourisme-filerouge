@@ -33,20 +33,20 @@ const Menu = () => {
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" onClick={handelclikc}>
             <ul class="navbar-nav nav-pills" id="pills-tab" role="tablist" >
               <li class="nav-item" role="presentation">
-                <Link class="nav-link active" to="/" id="home" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</Link>
+                <Link class="nav-link active" to="/" id="home" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Accueil</Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to='/city' id="city" data-toggle="pill" data-bs-target="#pills-city" type="button" role="tab" aria-controls="pills-city" aria-selected="false">City</Link>
+                <Link class="nav-link" to='/city' id="city" data-toggle="pill" data-bs-target="#pills-city" type="button" role="tab" aria-controls="pills-city" aria-selected="false">Place</Link>
               </li>
               <li class="nav-item" role="presentation">
-                <Link class="nav-link" id="plages" to='/beaches' data-bs-target="#pills-plage" type="button" role="tab" aria-controls="pills-plage" aria-selected="false">Beaches</Link>
+                <Link class="nav-link" id="plages" to='/beaches' data-bs-target="#pills-plage" type="button" role="tab" aria-controls="pills-plage" aria-selected="false">Plage</Link>
               </li>
               {/* <li class="nav-item" role="presentation">
                 <Link class="nav-link" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Comment</Link>
               </li> */}
               
               <li class="nav-item" role="presentation">
-                <Link class="nav-link btn btn-outline-primary waves-effect position-relative" id="favorite" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalfavorite">Favorite <span class="badge text-bg-secondary">
+                <Link class="nav-link btn btn-outline-primary waves-effect position-relative" id="favorite" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalfavorite">Favori<span class="badge text-bg-secondary">
                   {count}+
                   {/* <span class="visually-hidden">unread messages</span> */}
                 </span></Link>
@@ -68,7 +68,7 @@ const Menu = () => {
               <li class="nav-item dropdown" role="presentation">
                 {show ? <div class="dropdown">
                   <select class="btn btn-secondary dropdown-toggle" onChange={(e) => handelfilter(e.target.value)} id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: 'white', color: 'black' }}>
-                    <option value="vide">name city</option>
+                    <option value="vide">Nom de ville</option>
                     <option value="Essaouira" class="dropdown-item">Essaouira</option>
                     <option value="Dakhla" class="dropdown-item">Dakhla</option>
                     <option value="Nador" class="dropdown-item">Nador</option>
@@ -90,12 +90,12 @@ const Menu = () => {
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="Auth" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Comment
+                  Commentaire
                 </a>
                 <ul class="dropdown-menu">
 
-                  <li><a class="dropdown-item"  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModaladdcomment" data-bs-whatever="@getbootstrap">Add comment</a></li>
-                  <li><Link class="dropdown-item" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Show comment</Link></li>
+                  <li><a class="dropdown-item"  type="button"  data-bs-toggle="modal" data-bs-target="#exampleModaladdcomment" data-bs-whatever="@getbootstrap">Ajouter Commentaire</a></li>
+                  <li><Link class="dropdown-item" id="contact" to="/comment" data-bs-toggle="pill-contact" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Afficher Commentaire</Link></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">

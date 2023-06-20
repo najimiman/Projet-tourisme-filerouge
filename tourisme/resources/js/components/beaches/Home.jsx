@@ -36,7 +36,7 @@ export default function Homebeaches() {
                                                 : `${data.description.slice(0, 100)}`}
                                                 {data.description.length > 100 && (
                                                     <button type="button" class="btn btn-link" onClick={() => toggleConseil(data.id)}>
-                                                    {showFull[data.id] ? 'Read Less' : 'Read More'}
+                                                    {showFull[data.id] ? 'Lire moins': 'Lire plus'}
                                                     </button>
                                                 )}
                                                
